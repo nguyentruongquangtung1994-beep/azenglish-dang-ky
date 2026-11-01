@@ -391,7 +391,7 @@ body.formoff .bar-reg{display:inline-flex}
           <div><h2>Đăng ký tư vấn</h2><p>Chỉ mất 20 giây.</p></div>
           <span class="badge"><svg width="14" height="14"><use href="#i-clock"/></svg>Gọi lại ≤ 2 giờ</span>
         </div>
-        <div class="pgs" aria-hidden="true"><div class="tr"><i id="pbar"></i></div><div class="st"><span id="pstep">Bước 1/3 · Chọn chương trình</span><span id="ppct">0%</span></div></div>
+        <div class="pgs" aria-hidden="true"><div class="tr"><i id="pbar"></i></div><div class="st"><span id="pstep">Bước 1/4 · Chọn chương trình</span><span id="ppct">0%</span></div></div>
         <div class="gift" id="refBox" hidden><span class="gi"><svg><use href="#i-gift"/></svg></span><span id="refTxt"></span></div>
 
         <div class="field">
@@ -420,6 +420,11 @@ body.formoff .bar-reg{display:inline-flex}
           <div class="seg" id="role"><button type="button" data-v="ph" aria-pressed="true">Phụ huynh</button><button type="button" data-v="hv" aria-pressed="false">Học viên</button></div>
         </div>
 
+        <div class="field">
+          <span class="lbl">Hình thức học</span>
+          <div class="seg" id="mode"><button type="button" data-v="offline" aria-pressed="false">🏫 Offline</button><button type="button" data-v="online" aria-pressed="false">💻 Online</button></div>
+        </div>
+
         <details class="more" id="more">
           <summary>Thêm họ tên & giờ gọi <small>không bắt buộc</small></summary>
         <div class="field">
@@ -438,6 +443,7 @@ body.formoff .bar-reg{display:inline-flex}
         <div class="err" id="err" role="alert"></div>
         <button class="btn main block" id="go" type="submit"><span>Nhận tư vấn miễn phí</span><svg><use href="#i-arrow"/></svg></button>
         <p class="fine"><svg><use href="#i-lock"/></svg>Không spam · Không chia sẻ cho bên thứ ba</p>
+        <p class="fine" style="margin-top:6px;display:block">Chưa biết trình độ? <a href="../kiem-tra/">Làm bài test miễn phí 20 phút →</a></p>
       </form>
 
       <div class="done" id="ok" hidden>
@@ -545,11 +551,12 @@ body.formoff .bar-reg{display:inline-flex}
   var OFF = "Form đang được nối máy chủ — bạn nhắn Zalo 0971 882 096 để AZ hỗ trợ ngay nhé.";
   var TEST = {
     ielts: {url: "https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/academy.html#kiem-tra", txt: "Kiểm tra IELTS đầu vào"},
-    toeic: {url: "https://vocab.azenglish.vn/#kiem-tra", txt: "Kiểm tra trình độ miễn phí"},
-    giaotiep: {url: "https://vocab.azenglish.vn/#kiem-tra", txt: "Kiểm tra trình độ miễn phí"},
-    thcs: {url: "https://vocab.azenglish.vn/#kiem-tra", txt: "Kiểm tra trình độ miễn phí"},
-    tuvan: {url: "https://vocab.azenglish.vn/#kiem-tra", txt: "Kiểm tra trình độ miễn phí"}
+    toeic: {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"},
+    giaotiep: {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"},
+    thcs: {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"},
+    tuvan: {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"}
   };
+  TEST.junior = {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"};
   var GIFT = {junior: "giảm 300.000đ", ielts: "giảm 500.000đ – 1.000.000đ", toeic: "giảm 300.000đ", giaotiep: "giảm 300.000đ", thcs: "giảm 300.000đ"};
   var RES = [
     {img: "assets/ket-qua-leyonardo-8.0.webp", name: "Leyonardo", ov: "8.0", when: "Academic · 08/2026"},
@@ -569,7 +576,7 @@ body.formoff .bar-reg{display:inline-flex}
   var ref = (Q.get("ref") || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 8);
   var src = (Q.get("src") || Q.get("utm_source") || "").slice(0, 40);
   var $ = function(id){ return document.getElementById(id); };
-  var S = {prog: "", role: "ph", time: ""};
+  var S = {prog: "", role: "ph", time: "", mode: ""};
   var QKEY = "azdk_queue";
 
   function store(k, v){ try { if (v === undefined) return JSON.parse(localStorage.getItem(k) || "null"); localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
@@ -588,7 +595,7 @@ body.formoff .bar-reg{display:inline-flex}
       if (key === "prog") { $("err").textContent = ""; showGift(); }
     });
   }
-  pick($("progs"), "prog", true); pick($("role"), "role", true); pick($("time"), "time", false);
+  pick($("progs"), "prog", true); pick($("role"), "role", true); pick($("mode"), "mode", true); pick($("time"), "time", false);
   function choose(p){ var b = document.querySelector('#progs [data-p="' + p + '"]'); if (b && S.prog !== p) b.click(); }
   var p0 = (Q.get("p") || "").toLowerCase(); if (p0) choose(p0);
   document.querySelectorAll("[data-pick]").forEach(function(b){
@@ -603,13 +610,17 @@ body.formoff .bar-reg{display:inline-flex}
     $("err").textContent = "";
   });
 
+  // Kết quả test trình độ (trang ../kiem-tra/ lưu tạm trên máy) → gửi kèm đăng ký
+  function testSummary(){ var t = store("azkt_last"); return t && t.cefr ? t.cefr + " · Đọc " + t.r + "% · Nghe " + t.l + "% · Viết " + t.w + "% (" + t.id + ")" : ""; }
+  (function(){ var t = store("azkt_last"); if (t && t.cefr && Q.get("from") === "test") { $("refBox").hidden = false; $("refTxt").innerHTML = "Kết quả test của bạn: <b>" + t.cefr + "</b> — AZ sẽ tư vấn lộ trình đúng trình độ này."; } })();
+
   // Thanh tiến độ 3 bước + nút gửi tỏa sáng khi đủ
   function upd(){
-    var a = !!S.prog, b = !!normPhone($("phone").value), c = $("consent").checked, n = a + b + c;
-    $("pbar").style.width = Math.max(6, n / 3 * 100) + "%";
-    $("ppct").textContent = Math.round(n / 3 * 100) + "%";
-    $("pstep").innerHTML = !a ? "Bước 1/3 · Chọn chương trình" : !b ? "Bước 2/3 · Nhập số điện thoại" : !c ? "Bước 3/3 · Tích đồng ý" : "<b>Sẵn sàng — bấm gửi nhé!</b>";
-    $("go").classList.toggle("ready", n === 3);
+    var a = !!S.prog, b = !!normPhone($("phone").value), m = !!S.mode, c = $("consent").checked, n = a + b + m + c;
+    $("pbar").style.width = Math.max(6, n / 4 * 100) + "%";
+    $("ppct").textContent = Math.round(n / 4 * 100) + "%";
+    $("pstep").innerHTML = !a ? "Bước 1/4 · Chọn chương trình" : !b ? "Bước 2/4 · Nhập số điện thoại" : !m ? "Bước 3/4 · Chọn Online / Offline" : !c ? "Bước 4/4 · Tích đồng ý" : "<b>Sẵn sàng — bấm gửi nhé!</b>";
+    $("go").classList.toggle("ready", n === 4);
   }
   ["click", "input", "change"].forEach(function(ev){ $("f").addEventListener(ev, function(){ setTimeout(upd, 0); }); });
   upd();
@@ -635,8 +646,9 @@ body.formoff .bar-reg{display:inline-flex}
     var phone = normPhone($("phone").value);
     if (!S.prog) return fail("Bạn chọn chương trình quan tâm nhé.");
     if (!phone) return fail("Số điện thoại chưa đúng (10 số, bắt đầu bằng 0).", $("phone"));
+    if (!S.mode) return fail("Bạn chọn học Online hay Offline nhé.");
     if (!$("consent").checked) return fail("Bạn tích ô đồng ý để AZ liên hệ nhé.");
-    var body = {t: "reg", phone: phone, prog: S.prog, role: S.role, name: $("name").value.trim(), time: S.time, src: src, ref: ref, consent: true, hp: $("hp").value};
+    var body = {t: "reg", phone: phone, prog: S.prog, role: S.role, mode: S.mode, test: testSummary(), name: $("name").value.trim(), time: S.time, src: src, ref: ref, consent: true, hp: $("hp").value};
     $("go").disabled = true; $("go").innerHTML = '<i class="spin"></i><span>Đang gửi…</span>'; $("err").textContent = "";
     post(body).then(function(r){
       if (!r || !r.ok) throw new Error((r && r.err) || "Gửi chưa được, bạn thử lại nhé.");
