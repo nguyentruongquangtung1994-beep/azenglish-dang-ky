@@ -712,7 +712,7 @@ function azGiftCards(prog, cls){
     tuvan: {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"}
   };
   TEST.junior = {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"};
-  var GIFT = {junior: "giảm 300.000đ", ielts: "giảm 500.000đ – 1.000.000đ", toeic: "giảm 300.000đ", giaotiep: "giảm 300.000đ", thcs: "giảm 300.000đ"};
+  var GIFT = {ielts: "giảm 300.000đ", toeic: "giảm 200.000đ", giaotiep: "giảm 200.000đ", thcs: "giảm 200.000đ"}; // AZJunior không áp dụng giới thiệu
   var RES = [
     {img: "assets/ket-qua-leyonardo-8.0.webp", name: "Leyonardo", ov: "8.0", when: "Academic · 08/2026"},
     {img: "assets/ket-qua-thanh-tai-7.0.webp", name: "Thành Tài", ov: "7.0", when: "Academic · 05/2025"},
@@ -788,7 +788,7 @@ function azGiftCards(prog, cls){
   function showGift(){
     if (!ref) return;
     var g = GIFT[S.prog];
-    $("refTxt").innerHTML = "Bạn được <b>" + esc(refName || "học viên AZ") + "</b> giới thiệu" + (g ? " — <b>" + g + "</b> học phí." : " — được giảm học phí khi đăng ký học.");
+    $("refTxt").innerHTML = "Bạn được <b>" + esc(refName || "học viên AZ") + "</b> giới thiệu" + (S.prog === "junior" ? " — khóa AZJunior không áp dụng ưu đãi giới thiệu." : g ? " — <b>" + g + "</b> học phí." : " — được giảm học phí khi đăng ký học.");
   }
   if (ref) { $("refBox").hidden = false; showGift(); post({t: "refname", ref: ref}).then(function(r){ if (r && r.ok) { refName = r.name; showGift(); } }).catch(function(){}); }
 

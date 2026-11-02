@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0B1424">
 <title>Đại sứ AZ · AZEnglish</title>
-<meta name="description" content="Học viên và phụ huynh AZEnglish giới thiệu bạn học: nhận thưởng tới 1.000.000đ mỗi người ngay khi bạn ấy đóng học phí, người được giới thiệu được giảm cùng mức.">
+<meta name="description" content="Học viên và phụ huynh AZEnglish giới thiệu bạn học: nhận thưởng 200.000đ – 500.000đ mỗi người ngay khi bạn ấy đóng học phí, người được giới thiệu được giảm học phí.">
 <meta property="og:title" content="Đại sứ AZ — giới thiệu bạn học, nhận thưởng">
-<meta property="og:description" content="Thưởng tới 1.000.000đ mỗi người, thêm thưởng mốc và giải thi đua tháng / quý.">
+<meta property="og:description" content="Thưởng tới 500.000đ mỗi người, càng giới thiệu nhiều càng lên bậc, thêm giải thi đua tháng / quý / năm.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -303,9 +303,7 @@ button,input{font:inherit;color:inherit}
 .pill.g{background:var(--ok-soft);color:var(--ok)}.pill.y{background:#FFF1CC;color:#8A6400}.pill.x{background:#F2F2F2;color:#8A8A8A}
 .nextm{display:flex;align-items:center;gap:10px;background:var(--gold-soft);border:1px solid #EAD49B;border-radius:var(--r-sm);padding:10px 14px;font-size:14px;margin-bottom:14px}
 /* Mức thưởng + mốc */
-.rates{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.rates>.rate{grid-column:span 2}
-.rates>.rate:nth-child(n+4){grid-column:span 3}
+.rates{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .rate{padding:24px 20px;position:relative;overflow:hidden}
 .rate .ic{width:44px;height:44px;border-radius:12px;background:var(--night);color:var(--gold-3);display:grid;place-items:center;margin-bottom:14px}
 .rate .ic svg{width:22px;height:22px}
@@ -326,7 +324,7 @@ button,input{font:inherit;color:inherit}
 .node .m{position:absolute;left:50%;transform:translateX(-50%);top:56px;white-space:nowrap;font-size:13px;font-weight:700;color:var(--ok)}
 .node .h{position:absolute;left:50%;transform:translateX(-50%);bottom:58px;white-space:nowrap;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--gold);text-transform:uppercase}
 .track-l{display:flex;justify-content:space-between;margin-top:46px;font-size:13px;color:var(--ink-3)}
-@media (max-width:1060px){.rates{grid-template-columns:1fr 1fr}.rates>.rate,.rates>.rate:nth-child(n+4){grid-column:auto}.rates>.rate:first-child{grid-column:1/-1}}
+@media (max-width:1060px){.rates{grid-template-columns:1fr 1fr}}
 @media (max-width:900px){
   .hero .wrap{grid-template-columns:1fr;gap:40px;padding-top:100px;padding-bottom:56px}
   .how{grid-template-columns:1fr}
@@ -385,16 +383,16 @@ button,input{font:inherit;color:inherit}
   <div class="wrap">
     <div>
       <span class="eyebrow"><i></i>Dành riêng cho học viên & phụ huynh AZEnglish</span>
-      <h1>Giới thiệu bạn học,<br><em>nhận thưởng tới 1 triệu.</em></h1>
-      <p class="lead">Người bạn giới thiệu đóng học phí là bạn nhận thưởng <b style="color:#fff">ngay</b>. Họ cũng được giảm học phí đúng bằng mức thưởng của bạn.</p>
+      <h1>Giới thiệu bạn học,<br><em>nhận thưởng tới 500k mỗi người.</em></h1>
+      <p class="lead">Người bạn giới thiệu đóng học phí là bạn nhận thưởng <b style="color:#fff">ngay</b>. Họ cũng được giảm học phí 200.000đ – 300.000đ.</p>
       <div class="hero-cta">
         <a class="btn gold" href="#app" data-go="gt"><span>Giới thiệu ngay</span><svg><use href="#i-arrow"/></svg></a>
         <a class="btn glass" href="#app" data-go="link">Lấy link của tôi</a>
       </div>
       <div class="trust">
-        <div><b>1.000.000đ</b>thưởng tối đa mỗi người</div>
-        <div><b>+1,5 triệu</b>thưởng mốc 10 người</div>
-        <div><b>Tháng & Quý</b>giải thi đua Đại sứ</div>
+        <div><b>500.000đ</b>mỗi người, từ người thứ 10</div>
+        <div><b>3 · 5 · 10</b>người là lên bậc thưởng</div>
+        <div><b>1 triệu</b>giải Đại sứ của năm</div>
       </div>
     </div>
     <div class="amb-stage rv"><div class="amb float" id="heroCard"></div></div>
@@ -436,11 +434,10 @@ button,input{font:inherit;color:inherit}
         <div class="field">
           <span class="lbl">Chương trình <small id="progNote" hidden>áp dụng cho tất cả người trên</small></span>
           <div class="progs" id="progs">
-            <button type="button" class="prog" data-p="ielts" aria-pressed="false"><span class="ic"><svg><use href="#i-cap"/></svg></span><span><b>IELTS</b><span>Thưởng 500k – 1 triệu</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
-            <button type="button" class="prog" data-p="toeic" aria-pressed="false"><span class="ic"><svg><use href="#i-brief"/></svg></span><span><b>TOEIC</b><span>Thưởng 300.000đ</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
-            <button type="button" class="prog" data-p="giaotiep" aria-pressed="false"><span class="ic"><svg><use href="#i-chat"/></svg></span><span><b>Giao tiếp</b><span>Thưởng 300.000đ</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
-            <button type="button" class="prog" data-p="junior" aria-pressed="false"><span class="ic"><svg><use href="#i-mic"/></svg></span><span><b>AZJunior</b><span>Thưởng 300.000đ</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
-            <button type="button" class="prog wide" data-p="thcs" aria-pressed="false"><span class="ic"><svg><use href="#i-book"/></svg></span><span><b>THCS – THPT</b><span>Thưởng 300.000đ</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
+            <button type="button" class="prog" data-p="ielts" aria-pressed="false"><span class="ic"><svg><use href="#i-cap"/></svg></span><span><b>IELTS</b><span>Thưởng 300.000đ</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
+            <button type="button" class="prog" data-p="toeic" aria-pressed="false"><span class="ic"><svg><use href="#i-brief"/></svg></span><span><b>TOEIC</b><span>Thưởng 200.000đ</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
+            <button type="button" class="prog" data-p="giaotiep" aria-pressed="false"><span class="ic"><svg><use href="#i-chat"/></svg></span><span><b>Giao tiếp</b><span>Thưởng 200.000đ</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
+            <button type="button" class="prog" data-p="thcs" aria-pressed="false"><span class="ic"><svg><use href="#i-book"/></svg></span><span><b>THCS – THPT</b><span>Thưởng 200.000đ</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
           </div>
         </div>
         <input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -483,8 +480,8 @@ button,input{font:inherit;color:inherit}
 
     <!-- 3. Thi đua -->
     <section class="card pane" data-p="board" hidden>
-      <div class="pane-h"><h2>Bảng thi đua Đại sứ</h2><p>Xếp theo số người đã đóng học phí trong kỳ; bằng nhau thì xét số người đã giới thiệu.</p></div>
-      <div class="seg2" id="seg"><button type="button" data-k="month" aria-pressed="true">Tháng này</button><button type="button" data-k="quarter" aria-pressed="false">Quý này</button></div>
+      <div class="pane-h"><h2>Bảng thi đua Đại sứ</h2><p>Xếp theo số người đã đóng học phí trong kỳ; bằng nhau thì xét số người đã giới thiệu. Người dẫn đầu nhận giải: tháng 300k · quý 500k · năm 1 triệu.</p></div>
+      <div class="seg2" id="seg"><button type="button" data-k="month" aria-pressed="true">Tháng này</button><button type="button" data-k="quarter" aria-pressed="false">Quý này</button><button type="button" data-k="year" aria-pressed="false">Năm nay</button></div>
       <div class="podium" id="podium"></div>
       <ul class="rank" id="rank"></ul>
     </section>
@@ -507,17 +504,16 @@ button,input{font:inherit;color:inherit}
 
 <section class="sec">
   <div class="wrap">
-    <div class="sec-h rv"><span class="k">Mức thưởng</span><h2>Bạn nhận bao nhiêu, bạn ấy giảm bấy nhiêu</h2><p>Trả ngay khi người được giới thiệu đóng học phí.</p></div>
+    <div class="sec-h rv"><span class="k">Mức thưởng</span><h2>Bạn nhận bao nhiêu, bạn ấy giảm bấy nhiêu</h2><p>Trả ngay khi người được giới thiệu đóng học phí. Mức dưới đây là mức khởi điểm — giới thiệu càng nhiều, thưởng mỗi người càng cao.</p></div>
     <div class="rates">
-      <div class="card rate hi rv"><span class="ic"><svg><use href="#i-cap"/></svg></span><h3>IELTS</h3><div class="v">500.000đ<small>khi đóng 1 giai đoạn</small></div><div class="v">1.000.000đ<small>khi đóng từ 2 giai đoạn</small></div><span class="note">Người học giảm cùng mức</span></div>
-      <div class="card rate rv"><span class="ic"><svg><use href="#i-brief"/></svg></span><h3>TOEIC</h3><div class="v">300.000đ<small>mọi lộ trình TOEIC</small></div><span class="note">Người học giảm 300.000đ</span></div>
-      <div class="card rate rv"><span class="ic"><svg><use href="#i-chat"/></svg></span><h3>Giao tiếp</h3><div class="v">300.000đ<small>tiếng Anh giao tiếp</small></div><span class="note">Người học giảm 300.000đ</span></div>
-      <div class="card rate rv"><span class="ic"><svg><use href="#i-mic"/></svg></span><h3>AZJunior</h3><div class="v">300.000đ<small>Public Speaking & Debate</small></div><span class="note">Người học giảm 300.000đ</span></div>
-      <div class="card rate rv"><span class="ic"><svg><use href="#i-book"/></svg></span><h3>THCS – THPT</h3><div class="v">300.000đ<small>kiến thức & điểm thi cấp 2 – 3</small></div><span class="note">Người học giảm 300.000đ</span></div>
+      <div class="card rate hi rv"><span class="ic"><svg><use href="#i-cap"/></svg></span><h3>IELTS</h3><div class="v">300.000đ<small>lộ trình IELTS 240 buổi</small></div><span class="note">Người học giảm 300.000đ</span></div>
+      <div class="card rate rv"><span class="ic"><svg><use href="#i-brief"/></svg></span><h3>TOEIC</h3><div class="v">200.000đ<small>mọi lộ trình TOEIC</small></div><span class="note">Người học giảm 200.000đ</span></div>
+      <div class="card rate rv"><span class="ic"><svg><use href="#i-chat"/></svg></span><h3>Giao tiếp</h3><div class="v">200.000đ<small>tiếng Anh giao tiếp</small></div><span class="note">Người học giảm 200.000đ</span></div>
+      <div class="card rate rv"><span class="ic"><svg><use href="#i-book"/></svg></span><h3>THCS – THPT</h3><div class="v">200.000đ<small>kiến thức & điểm thi cấp 2 – 3</small></div><span class="note">Người học giảm 200.000đ</span></div>
     </div>
 
     <div class="card rv" style="margin-top:20px;padding:28px 26px 26px">
-      <div class="pane-h" style="margin:0"><h2 style="font-size:24px">Thưởng mốc — càng nhiều càng lớn</h2><p>Cộng thêm vào thưởng theo khóa khi đủ số người đã đóng học phí.</p></div>
+      <div class="pane-h" style="margin:0"><h2 style="font-size:24px">Bậc thưởng — càng nhiều càng cao</h2><p>Tính theo số người bạn giới thiệu đã đóng học phí. Từ người thứ 3, thứ 5, thứ 10 trở đi, mỗi người bạn nhận mức của bậc đó (hoặc mức khóa nếu cao hơn).</p></div>
       <div class="track" id="track"><div class="bar0"></div><div class="fill" id="fill"></div><div class="nodes" id="nodes"></div></div>
       <div class="track-l"><span>Người đã đóng phí</span><span id="trackMe"></span></div>
     </div>
@@ -529,10 +525,11 @@ button,input{font:inherit;color:inherit}
     <div class="sec-h rv"><span class="k">Quy chế</span><h2>Rõ ràng, công bằng</h2></div>
     <div class="faq rv">
       <details><summary>Ai được làm Đại sứ AZ?</summary><p>Học viên đang học, cựu học viên và phụ huynh của học viên AZEnglish. AZ xác minh trước khi chuyển thưởng lần đầu.</p></details>
+      <details><summary>Khóa nào được tính thưởng?</summary><p>IELTS, TOEIC, Tiếng Anh giao tiếp và Tiếng Anh THCS – THPT. Khóa AZJunior Public Speaking & Debate không áp dụng chương trình giới thiệu.</p></details>
       <details><summary>Người như thế nào thì được tính?</summary><p>Người học mới: chưa từng học AZ, chưa tự đăng ký trước đó và chưa có ai khác giới thiệu. Ai giới thiệu trước được tính.</p></details>
       <details><summary>Lời giới thiệu có hiệu lực bao lâu?</summary><p>90 ngày kể từ lúc giới thiệu đến khi người học đóng học phí.</p></details>
       <details><summary>Khi nào và nhận thưởng thế nào?</summary><p>Ngay khi người học đóng học phí, AZ liên hệ để chuyển khoản, hoặc trừ vào học phí kỳ sau nếu bạn muốn. Đại sứ dưới 18 tuổi: AZ chuyển cho phụ huynh.</p></details>
-      <details><summary>Giải thi đua tháng và quý xét thế nào?</summary><p>Theo số người đã đóng học phí trong tháng / quý, bằng nhau thì xét số người đã giới thiệu. Giải tháng 500k · 300k · 200k; giải quý 2 triệu · 1 triệu · 500k. AZ công bố đầu tháng sau.</p></details>
+      <details><summary>Giải thi đua tháng, quý, năm xét thế nào?</summary><p>Đại sứ có nhiều người đóng học phí nhất trong kỳ nhận giải: tháng 300.000đ · quý 500.000đ · năm 1.000.000đ. Bằng nhau thì xét số người đã giới thiệu. AZ công bố đầu kỳ sau.</p></details>
       <details><summary>Tôi cần lưu ý gì khi giới thiệu?</summary><p>Chỉ giới thiệu người đã đồng ý nhận cuộc gọi tư vấn. AZ có quyền không tính các lượt giới thiệu không trung thực.</p></details>
     </div>
   </div>
@@ -545,8 +542,8 @@ button,input{font:inherit;color:inherit}
   var API = "https://script.google.com/macros/s/AKfycbzVkTRdKunimvq9joNKd-s6fkC13rlS4rAPNPWP8RNVmkGls9sEumyEgjinq1NADB88Cg/exec";
   var OFF = "Form đang được nối máy chủ — bạn nhắn Zalo 0971 882 096 để AZ hỗ trợ ngay nhé.";
   var REG_URL = new URL("../dang-ky/", location.href).href;
-  var MOC = [{n:1,them:0,hang:"Đồng"},{n:2,them:100000,hang:""},{n:3,them:200000,hang:"Bạc"},{n:5,them:500000,hang:"Vàng"},{n:7,them:700000,hang:""},{n:10,them:1500000,hang:"Kim cương"}];
-  var GT = {month:[500000,300000,200000], quarter:[2000000,1000000,500000]};
+  var MOC = [{n:1,muc:0,hang:"Đồng"},{n:3,muc:250000,hang:"Bạc"},{n:5,muc:300000,hang:"Vàng"},{n:10,muc:500000,hang:"Kim cương"}];
+  var GT = {month:[300000], quarter:[500000], year:[1000000]};
   var $ = function(id){ return document.getElementById(id); };
   var ME = "azds_me";
   function store(k, v){ try { if (v === undefined) return JSON.parse(localStorage.getItem(k) || "null"); localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
@@ -605,7 +602,7 @@ button,input{font:inherit;color:inherit}
 
   // Thang mốc
   $("nodes").innerHTML = MOC.map(function(m){
-    return '<div class="node" data-n="' + m.n + '">' + (m.hang ? '<span class="h">' + esc(m.hang) + '</span>' : '') + '<div class="dot">' + m.n + '</div><span class="m">' + (m.them ? "+" + money(m.them) : "Bắt đầu") + '</span></div>';
+    return '<div class="node" data-n="' + m.n + '">' + (m.hang ? '<span class="h">' + esc(m.hang) + '</span>' : '') + '<div class="dot">' + m.n + '</div><span class="m">' + (m.muc ? money(m.muc) + "/người" : "Mức khóa") + '</span></div>';
   }).join("");
   function markLadder(n){
     var idx = -1;
@@ -752,17 +749,17 @@ button,input{font:inherit;color:inherit}
       .catch(function(){ loaded.board = false; $("rank").innerHTML = '<li class="empty-t" style="display:block">Chưa tải được bảng — bấm lại tab Thi đua.</li>'; });
   }
   function drawBoard(){
-    var list = B ? (B[kind] || []) : [], prize = kind === "month" ? (B && B.giaiThang || GT.month) : (B && B.giaiQuy || GT.quarter);
+    var list = B ? (B[kind] || []) : [], prize = (B && {month: B.giaiThang, quarter: B.giaiQuy, year: B.giaiNam}[kind]) || GT[kind];
     var order = [1, 0, 2];
     $("podium").innerHTML = order.map(function(i){
       var x = list[i];
       return '<div class="pod p' + (i + 1) + (x ? "" : " empty") + '"><div class="av">' + (x ? esc(x.name.charAt(0)) : (i + 1)) + '</div><b>' + (x ? esc(x.name) : "Còn trống") + '</b><div class="tg">' + (x && x.hang ? "★ " + esc(x.hang) : "") +
-        '</div><div class="col"><strong>' + (x ? x.ok : "–") + '</strong><span>đóng phí' + (x ? " · " + x.gt + " giới thiệu" : "") + '</span><em>Giải ' + money(prize[i]) + '</em></div></div>';
+        '</div><div class="col"><strong>' + (x ? x.ok : "–") + '</strong><span>đóng phí' + (x ? " · " + x.gt + " giới thiệu" : "") + '</span>' + (prize[i] ? '<em>Giải ' + money(prize[i]) + '</em>' : '') + '</div></div>';
     }).join("");
     var rest = list.slice(3);
     $("rank").innerHTML = rest.map(function(x, i){
       return '<li><span class="no">' + (i + 4) + '</span><span class="nm"><b>' + esc(x.name) + '</b>' + (x.hang ? '<span>★ ' + esc(x.hang) + '</span>' : '') + '</span><span class="sc"><b>' + x.ok + '</b>đóng phí · ' + x.gt + ' GT</span></li>';
-    }).join("") || (list.length ? "" : '<li class="empty-t" style="display:block">' + (kind === "month" ? "Tháng" : "Quý") + ' này chưa có ai — giới thiệu đầu tiên để dẫn đầu nhé!</li>');
+    }).join("") || (list.length ? "" : '<li class="empty-t" style="display:block">' + ({month: "Tháng", quarter: "Quý", year: "Năm"}[kind]) + ' này chưa có ai — giới thiệu đầu tiên để dẫn đầu nhé!</li>');
   }
   $("seg").addEventListener("click", function(e){
     var b = e.target.closest("button"); if (!b) return; kind = b.dataset.k;
@@ -787,7 +784,7 @@ button,input{font:inherit;color:inherit}
       $("meOut").innerHTML =
         '<div class="pane-h"><h2>Xin chào ' + esc(r.name) + '</h2><p>Mã ' + esc(r.code) + ' · hạng ' + esc(r.hang || "Thành viên") + ' · <a href="#" id="meOff">đổi tài khoản</a></p></div>' +
         '<div class="stats"><div class="stat"><b>' + r.success + '</b>đã đóng phí</div><div class="stat"><b>' + money(r.tong) + '</b>tổng thưởng</div><div class="stat"><b>' + money(r.datra) + '</b>đã nhận</div></div>' +
-        (r.next ? '<div class="nextm"><span>🎯</span><span>Còn <b>' + (r.next.n - r.success) + '</b> người nữa tới mốc ' + r.next.n + (r.next.them ? ' — thêm <b>' + full(r.next.them) + '</b>' : '') + '.</span></div>' : '') +
+        (r.next ? '<div class="nextm"><span>🎯</span><span>Còn <b>' + (r.next.n - r.success) + '</b> người nữa đóng phí là lên bậc ' + r.next.n + (r.next.muc ? ' — từ người thứ ' + r.next.n + ' bạn nhận <b>' + full(r.next.muc) + '</b>/người' : '') + '.</span></div>' : '') +
         (r.list.length ? '<ul class="refs">' + r.list.map(function(x){
           return '<li><div><b>' + esc(x.name || "Người học") + '</b> · ' + esc(x.phone) + '<small>' + esc(x.prog) + ' · ' + esc(x.t) + (x.tien ? ' · ' + full(x.tien) : '') + (x.note ? ' · ' + esc(x.note) : '') + '</small></div><span class="pill ' + cls(x.st) + '">' + esc(x.st.replace(" · chờ chuyển thưởng", " · chờ chuyển")) + '</span></li>';
         }).join("") + '</ul>' : '<p class="empty-t">Bạn chưa giới thiệu ai. Bắt đầu ở tab “Giới thiệu” nhé!</p>');
