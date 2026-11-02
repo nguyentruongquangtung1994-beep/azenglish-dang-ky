@@ -291,6 +291,13 @@ button,input{font:inherit;color:inherit}
 .lead-box h3{font-family:var(--serif);font-size:22px;margin:0 0 4px}
 .lead-box>p{margin:0 0 16px;color:var(--ink-2);font-size:14.5px}
 #result{padding-top:92px}
+.gifts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gcard{display:flex;gap:12px;align-items:center;padding:11px 12px;border:1px solid var(--line);border-radius:var(--r-sm);text-decoration:none;color:var(--ink);background:#fff;transition:border-color .2s}
+.gcard:hover{border-color:var(--gold-2)}
+.gcard .ge{flex:none;width:36px;height:36px;border-radius:10px;background:var(--night);color:var(--gold-3);display:grid;place-items:center}
+.gcard .ge svg{width:19px;height:19px}
+.gcard b{display:block;font-size:14px}.gcard small{display:block;font-size:12px;color:var(--ink-3)}
+@media (max-width:700px){.gifts{grid-template-columns:1fr}}
 .modal{position:fixed;inset:0;z-index:80;background:rgba(11,20,36,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px;animation:fadeIn .25s}
 .mcard{position:relative;width:100%;max-width:440px;max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:22px;padding:28px 24px 22px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);animation:popIn .35s var(--ease)}
 .mcard::before{content:"";position:absolute;inset:0 22px auto;height:3px;border-radius:0 0 3px 3px;background:linear-gradient(90deg,var(--gold),var(--gold-3),var(--gold))}
@@ -633,6 +640,53 @@ let lastResult = null;
 
 
 </script>
+<script>// Quà tặng = các chương trình tự học MIỄN PHÍ AZ đang chạy (link đã kiểm tra 02/11/2026). Dùng chung: đăng ký, test, tự học.
+var AZ_TOOLS = {
+  arena:    {e: "game", t: "Vocab Arena", d: "3000 từ giao tiếp, TOEIC, IELTS học bằng game", u: "https://vocab.azenglish.vn/"},
+  toeicVoc: {e: "brief", t: "Vocab Arena TOEIC", d: "Từ vựng TOEIC theo chủ đề, chơi mà nhớ", u: "https://vocab.azenglish.vn/AZEnglish%20TOEIC%20Vocab%20Arena%20(v2).html"},
+  ieltsVoc: {e: "cap", t: "Vocab Arena IELTS", d: "1000 từ IELTS B1–C1 theo chủ đề", u: "https://vocab.azenglish.vn/AZEnglish%20Vocab%20Arena%20-%201000%20tu%CC%9B%CC%80%20IELTS%20B1-C1%20(v2).html"},
+  grammar:  {e: "book", t: "AZ Grammar", d: "Nhiệm vụ ngữ pháp mỗi ngày 10–15 phút", u: "https://vocab.azenglish.vn/az-grammar/"},
+  vocab:    {e: "cards", t: "AZ Vocabulary", d: "Thẻ từ TOEIC/IELTS, lịch ôn 1–3–7 ngày", u: "https://vocab.azenglish.vn/az-vocabulary/"},
+  kids:     {e: "kid", t: "Vocab Kid", d: "Thẻ từ có hình cho bé, song ngữ Việt – Anh", u: "https://vocab.azenglish.vn/vocab-kids/"},
+  toeicTr:  {e: "test", t: "TOEIC Trainer", d: "Luyện đề TOEIC có giải thích", u: "https://nguyentruongquangtung1994-beep.github.io/AZTOEIC-trainer/"},
+  toeicLis: {e: "ear", t: "TOEIC Listening Lab", d: "Nghe đục lỗ đề ETS 2023 từng câu", u: "https://nguyentruongquangtung1994-beep.github.io/AZTOEIC-trainer/listening-lab/"},
+  academy:  {e: "cap", t: "AZIELTS Academy – dùng thử 7 ngày", d: "Writing chấm band, đề Cambridge Reading & Listening", u: "https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/academy.html"},
+  roadmap:  {e: "map", t: "Lộ trình tự học 4 tuần", d: "Mỗi ngày 20–30 phút, theo đúng khóa bạn chọn", u: "../tu-hoc/"}
+};
+// Bộ quà theo chương trình (thứ tự = mức ưu tiên hiển thị)
+var AZ_GIFTS = {
+  ielts:    ["academy", "ieltsVoc", "grammar", "roadmap"],
+  toeic:    ["toeicTr", "toeicLis", "toeicVoc", "roadmap"],
+  giaotiep: ["arena", "grammar", "vocab", "roadmap"],
+  junior:   ["kids", "arena", "roadmap"],
+  thcs:     ["grammar", "arena", "vocab", "roadmap"],
+  tuvan:    ["arena", "grammar", "roadmap"]
+};
+function azGiftCards(prog, cls){
+  return (AZ_GIFTS[prog] || AZ_GIFTS.tuvan).map(function(k){
+    var g = AZ_TOOLS[k], u = k === "roadmap" ? g.u + "?p=" + (prog === "tuvan" ? "giaotiep" : prog) : g.u;
+    return '<a class="' + (cls || "gcard") + '" href="' + u + '" target="_blank" rel="noopener"><span class="ge"><svg><use href="#g-' + g.e + '"/></svg></span><span><b>' + g.t + '</b><small>' + g.d + '</small></span></a>';
+  }).join("");
+}
+
+// Biểu tượng nét (vàng) cho thẻ quà — chèn 1 lần vào trang
+(function(){
+  var P = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
+  var I = {
+    game: '<rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 11v3M5.5 12.5h3M15.5 12h.01M18 13.5h.01"/>',
+    brief: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>',
+    cap: '<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/>',
+    book: '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M8 7h7M8 11h5"/>',
+    cards: '<rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/>',
+    kid: '<circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/><path d="M10 8h.01M14 8h.01"/>',
+    test: '<path d="M9 3h6l1 3H8z"/><rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 12l2 2 4-4"/>',
+    ear: '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/>',
+    map: '<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>'
+  };
+  var html = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + Object.keys(I).map(function(k){ return '<symbol id="g-' + k + '" ' + P + '>' + I[k] + '</symbol>'; }).join("") + '</defs></svg>';
+  if (document.body) document.body.insertAdjacentHTML("afterbegin", html); else document.addEventListener("DOMContentLoaded", function(){ document.body.insertAdjacentHTML("afterbegin", html); });
+})();
+</script>
 <script>
 (function(){
   var API = "https://script.google.com/macros/s/AKfycbzVkTRdKunimvq9joNKd-s6fkC13rlS4rAPNPWP8RNVmkGls9sEumyEgjinq1NADB88Cg/exec";
@@ -838,7 +892,10 @@ let lastResult = null;
     var box = $("leadBox");
     post({t: "reg", phone: S.phone, prog: rc.prog, role: "hv", name: S.name, mode: S.mode, src: "Test trình độ", test: sum, consent: true}).then(function(r){
       if (!r || !r.ok) throw new Error((r && r.err) || "Gửi chưa được");
-      box.innerHTML = '<div class="done"><div class="ring"><svg viewBox="0 0 84 84"><circle cx="42" cy="42" r="38"/><path d="M27 43l10 10 20-21"/></svg></div><h2>AZ đã nhận kết quả của bạn</h2><p>Tư vấn viên sẽ gọi số ' + esc(S.phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3")) + ' trong 2 giờ làm việc để giải thích kết quả ' + x.cefr + ' và xếp lộ trình ' + (S.mode === "online" ? "học Online" : "tại trung tâm") + '.</p><a class="btn dark block" href="https://zalo.me/0971882096" target="_blank" rel="noopener">Nhắn Zalo cho AZ ngay</a></div>';
+      box.innerHTML = '<span class="k" style="font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)">Đã gửi kết quả</span><h3>Cảm ơn ' + esc(S.name) + '</h3>' +
+        '<p>AZEnglish đã nhận kết quả <b>' + x.cefr + '</b>. Tư vấn viên sẽ liên hệ số ' + esc(S.phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3")) + ' trong vòng 2 giờ làm việc để giải thích kết quả và xếp lộ trình ' + (S.mode === "online" ? "học Online" : "tại trung tâm") + '.</p>' +
+        '<p class="nt" style="font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:16px 0 8px">Quà tặng từ AZEnglish</p><div class="gifts">' + azGiftCards(rc.prog) + '</div>' +
+        '<a class="btn dark block" style="margin-top:14px" href="https://zalo.me/0971882096" target="_blank" rel="noopener">Liên hệ AZEnglish qua Zalo</a>';
     }).catch(function(e){
       var msg = e && e.message && !/fetch|JSON|network|Load failed/i.test(e.message) ? e.message : "Mạng chập chờn, chưa gửi được kết quả.";
       box.innerHTML = '<h3>Chưa gửi được kết quả</h3><p>' + esc(msg) + '</p><button class="btn main block" id="retry"><span>Gửi lại</span><svg><use href="#i-arrow"/></svg></button>';
