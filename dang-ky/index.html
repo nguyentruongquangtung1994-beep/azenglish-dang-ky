@@ -223,20 +223,31 @@ button,input{font:inherit;color:inherit}
 .bar-reg{display:none;min-height:40px;padding:0 18px;font-size:14px;border-radius:999px}
 body.formoff .bar-reg{display:inline-flex}
 @media (max-width:900px){body.formoff .bar-reg{display:none}}
-.feat{display:flex;gap:16px;align-items:center;max-width:430px;margin:0 0 30px;padding:12px 18px 12px 12px;border-radius:18px;text-decoration:none;color:#fff;background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border:1px solid rgba(227,194,122,.45);box-shadow:0 24px 50px -24px rgba(0,0,0,.7);backdrop-filter:blur(8px);transition:transform .3s var(--ease),border-color .3s}
-.feat:hover{transform:translateY(-3px);border-color:var(--gold-3)}
-.feat .fph{flex:none;width:112px;height:128px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 2px rgba(227,194,122,.6);background:#1B2B44}
-.feat .fph img{width:190%;max-width:none;margin:-60% 0 0 -45%}
-.feat .fi{display:flex;flex-direction:column;gap:2px;min-width:0}
-.feat .fk{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2)}
-.feat .fs{display:flex;align-items:baseline;gap:6px}
-.feat .fs b{font:700 46px/1 var(--serif);background:linear-gradient(180deg,#FFF3D1,var(--gold-3));-webkit-background-clip:text;background-clip:text;color:transparent}
-.feat .fs small{font-size:13px;font-weight:700;color:#C9D2E3}
-.feat .fn{font-weight:700;font-size:15px}
-.feat .fc{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.feat .fc em{font-style:normal;font-size:12px;font-weight:600;color:#E5EAF2;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:3px 9px}
-.feat .fc em i{font-style:normal;margin-left:5px;color:var(--gold-3);font-weight:700}
-@media (max-width:900px){.feat{display:none}}
+.hero .wrap{align-items:start}
+.hero .copy{padding-top:8px}
+.feats{margin:0 0 30px;max-width:560px}
+.fhead{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2)}
+.fhead span{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:rgba(245,196,81,.15);color:var(--gold-3);font-size:11px;letter-spacing:0}
+.fhead::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(227,194,122,.5),transparent)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fcard{position:relative;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;text-decoration:none;color:#fff;background:#0F1D35;border:1px solid rgba(227,194,122,.35);box-shadow:0 26px 50px -26px rgba(0,0,0,.8);transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.fcard:hover{transform:translateY(-5px);border-color:var(--gold-3);box-shadow:0 34px 60px -26px rgba(0,0,0,.85),0 0 0 1px rgba(245,196,81,.25)}
+.fcard:nth-child(2){margin-top:26px}
+.fimg{position:relative;display:block;height:150px;overflow:hidden;background:#1B2B44}
+.fimg img{width:100%;height:100%;object-fit:cover;object-position:50% 52%;transition:transform .6s var(--ease)}
+.fimg.doc img{object-position:50% 8%;filter:grayscale(.3) brightness(.85)}
+.fimg.doc::after{background:linear-gradient(180deg,rgba(15,29,53,.25) 0%,rgba(15,29,53,.6) 45%,rgba(15,29,53,.97) 100%)}
+.fcard:hover .fimg img{transform:scale(1.05)}
+.fimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,29,53,0) 35%,rgba(15,29,53,.92) 100%)}
+.fscore{position:absolute;left:16px;top:96px;z-index:1;display:flex;align-items:baseline;gap:6px}
+.fscore b{font:700 44px/1 var(--serif);background:linear-gradient(180deg,#FFF3D1,var(--gold-3));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.fscore small{font-size:12px;font-weight:700;color:#DCE3EE}
+.fbody{display:flex;flex-direction:column;gap:8px;padding:12px 16px 16px}
+.fbody .fn{font-weight:700;font-size:15.5px}
+.fbody .fc{display:flex;flex-wrap:wrap;gap:5px}
+.fbody .fc em{font-style:normal;font-size:11.5px;font-weight:700;color:#E5EAF2;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:3px 8px}
+.fbody .fc em.max{color:var(--night);background:linear-gradient(180deg,#F5DC9A,var(--gold));border-color:transparent}
+@media (max-width:900px){.feats{display:none}}
 .hero-steps{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 30px;padding:0;list-style:none}
 .hero-steps li{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#D7DEEA}
 .hero-steps li b{width:26px;height:26px;border-radius:50%;border:1px solid rgba(227,194,122,.6);color:var(--gold-3);display:grid;place-items:center;font:700 13px/1 var(--serif)}
@@ -436,15 +447,21 @@ body.formoff .bar-reg{display:inline-flex}
 <section class="hero" id="top">
   <div class="wrap">
     <div class="copy">
-      <a class="feat" href="#ket-qua" data-res="toeic">
-        <span class="fph"><img src="assets/toeic-950.jpg" alt="Ngọc Anh nhận phiếu điểm TOEIC 950 tại AZEnglish"></span>
-        <span class="fi">
-          <span class="fk">Thành tích học viên AZ</span>
-          <span class="fs"><b>950</b><small>/990 TOEIC</small></span>
-          <span class="fn">Ngọc Anh</span>
-          <span class="fc"><em>Listening 495<i>tối đa</i></em><em>Reading 455</em></span>
-        </span>
-      </a>
+      <div class="feats">
+        <p class="fhead"><span>★</span>Thành tích học viên AZ</p>
+        <div class="fgrid">
+          <a class="fcard" href="#ket-qua" data-res="ielts">
+            <span class="fimg doc"><img src="assets/ket-qua-leyonardo-8.0.webp" alt="Phiếu điểm IELTS 8.0 của Leyonardo"></span>
+            <span class="fscore"><b>8.0</b><small>IELTS Overall</small></span>
+            <span class="fbody"><span class="fn">Leyonardo</span><span class="fc"><em>L 8.5</em><em>R 8.0</em><em>W 6.5</em><em>S 8.5</em></span></span>
+          </a>
+          <a class="fcard" href="#ket-qua" data-res="toeic">
+            <span class="fimg"><img src="assets/toeic-950.jpg" alt="Ngọc Anh nhận phiếu điểm TOEIC 950 tại AZEnglish"></span>
+            <span class="fscore"><b>950</b><small>/990 TOEIC</small></span>
+            <span class="fbody"><span class="fn">Ngọc Anh</span><span class="fc"><em class="max">Listening 495 · tối đa</em><em>Reading 455</em></span></span>
+          </a>
+        </div>
+      </div>
       <span class="eyebrow"><i></i>Tư vấn & kiểm tra trình độ miễn phí</span>
       <h1>Học đúng lộ trình,<br><em>thấy rõ kết quả.</em></h1>
       <p class="lead">Để lại số điện thoại, tư vấn viên AZEnglish gọi lại trong 2 giờ làm việc, kiểm tra trình độ và xếp lộ trình phù hợp cho bạn hoặc con.</p>
