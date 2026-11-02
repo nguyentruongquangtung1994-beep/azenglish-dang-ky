@@ -254,6 +254,17 @@ button,input{font:inherit;color:inherit}
 .grp-t{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:4px 0 14px}
 .grp-t::after{content:"";flex:1;height:1px;background:var(--line)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.lrow+.lrow{border-top:1px dashed var(--line);padding-top:14px}
+.lno{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;font-weight:700;color:var(--ink-3);margin:0 0 8px}
+.lno button{border:0;background:none;color:var(--ink-3);font:600 12.5px var(--sans);cursor:pointer;padding:2px 4px}
+.lno button:hover{color:var(--red,#C8102E)}
+.add-l{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:46px;margin:-4px 0 18px;border:1.5px dashed var(--line-2);border-radius:12px;background:#fff;color:var(--gold);font:700 14.5px var(--sans);cursor:pointer;transition:border-color .2s,background .2s}
+.add-l:hover{border-color:var(--gold);background:var(--gold-soft)}
+.add-l b{font-size:20px;line-height:1}
+.add-l[hidden]{display:none}
+.rlist{list-style:none;margin:0 0 16px;padding:0;text-align:left;font-size:14px}
+.rlist li{padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink-2)}
+.rlist li b{color:var(--ink)}
 .linkbox{display:flex;align-items:center;gap:10px;border:1.5px dashed var(--gold);border-radius:var(--r-sm);padding:12px 14px;background:var(--gold-soft);font-size:14px;font-weight:600;word-break:break-all;margin-bottom:12px}
 .linkbox svg{flex:none;width:18px;height:18px;color:var(--gold)}
 .acts2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -413,19 +424,17 @@ button,input{font:inherit;color:inherit}
     <!-- 1. Giới thiệu -->
     <section class="card pane" data-p="gt">
       <form id="fRef" novalidate>
-        <div class="pane-h"><h2>Giới thiệu một người học</h2><p>Chỉ cần tên và số điện thoại. AZ sẽ gọi tư vấn và báo kết quả cho bạn.</p></div>
+        <div class="pane-h"><h2>Giới thiệu người học</h2><p>Chỉ cần tên và số điện thoại. Giới thiệu nhiều người thì bấm dấu <b>+</b>. AZ sẽ gọi tư vấn và báo kết quả cho bạn.</p></div>
         <p class="grp-t">Thông tin của bạn</p>
         <div class="two">
           <div class="field"><label class="lbl" for="rname">Họ tên bạn</label><input class="inp" id="rname" autocomplete="name" maxlength="60" placeholder="Nguyễn Văn A"></div>
           <div class="field"><label class="lbl" for="rphone">SĐT của bạn <small>nhận thưởng</small></label><input class="inp" id="rphone" type="tel" inputmode="tel" maxlength="14" placeholder="0912 345 678"></div>
         </div>
         <p class="grp-t">Người được giới thiệu</p>
-        <div class="two">
-          <div class="field"><label class="lbl" for="lname">Tên người học</label><input class="inp" id="lname" maxlength="60" placeholder="Trần Minh (con chị Hoa)"></div>
-          <div class="field"><label class="lbl" for="lphone">SĐT người học / phụ huynh</label><input class="inp" id="lphone" type="tel" inputmode="tel" maxlength="14" placeholder="0912 345 678"></div>
-        </div>
+        <div id="learners"></div>
+        <button type="button" class="add-l" id="addL"><b>+</b> Thêm người học</button>
         <div class="field">
-          <span class="lbl">Chương trình</span>
+          <span class="lbl">Chương trình <small id="progNote" hidden>áp dụng cho tất cả người trên</small></span>
           <div class="progs" id="progs">
             <button type="button" class="prog" data-p="ielts" aria-pressed="false"><span class="ic"><svg><use href="#i-cap"/></svg></span><span><b>IELTS</b><span>Thưởng 500k – 1 triệu</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
             <button type="button" class="prog" data-p="toeic" aria-pressed="false"><span class="ic"><svg><use href="#i-brief"/></svg></span><span><b>TOEIC</b><span>Thưởng 300.000đ</span></span><i class="tick"><svg><use href="#i-check"/></svg></i></button>
@@ -435,7 +444,7 @@ button,input{font:inherit;color:inherit}
           </div>
         </div>
         <input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <label class="check"><input type="checkbox" id="consent"><span>Người này đã đồng ý để AZEnglish gọi điện / nhắn Zalo tư vấn.</span></label>
+        <label class="check"><input type="checkbox" id="consent"><span id="consentTxt">Người này đã đồng ý để AZEnglish gọi điện / nhắn Zalo tư vấn.</span></label>
         <div class="err" id="err" role="alert"></div>
         <button class="btn main block" id="go" type="submit"><span>Gửi giới thiệu</span><svg><use href="#i-arrow"/></svg></button>
       </form>
@@ -443,6 +452,7 @@ button,input{font:inherit;color:inherit}
         <div class="ring"><svg viewBox="0 0 84 84"><circle cx="42" cy="42" r="38"/><path d="M27 43l10 10 20-21"/></svg></div>
         <h2 id="refOkH">Cảm ơn bạn!</h2>
         <p id="refOkTxt"></p>
+        <ul class="rlist" id="refOkList" hidden></ul>
         <div id="refOkCard"></div>
         <button class="btn dark block" type="button" id="more">Giới thiệu thêm người khác</button>
       </div>
@@ -610,30 +620,99 @@ button,input{font:inherit;color:inherit}
     var b = e.target.closest("[data-p]"); if (!b) return; prog = b.dataset.p;
     $("progs").querySelectorAll("[data-p]").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
   });
+  // Danh sách người học: dấu + thêm ô, tối đa MAXL người mỗi lần gửi
+  var MAXL = 10;
+  function rowsL(){ return Array.prototype.slice.call($("learners").querySelectorAll(".lrow")); }
+  function renumber(){
+    var rs = rowsL(), many = rs.length > 1;
+    rs.forEach(function(r, i){
+      r.querySelector(".lno").hidden = !many;
+      r.querySelector(".lno span").textContent = "Người học " + (i + 1);
+    });
+    $("addL").hidden = rs.length >= MAXL;
+    $("progNote").hidden = !many;
+    $("consentTxt").textContent = many ? "Những người này đã đồng ý để AZEnglish gọi điện / nhắn Zalo tư vấn." : "Người này đã đồng ý để AZEnglish gọi điện / nhắn Zalo tư vấn.";
+    $("go").querySelector("span").textContent = many ? "Gửi giới thiệu " + rs.length + " người" : "Gửi giới thiệu";
+  }
+  function addRow(focus){
+    var k = Date.now() + "" + Math.floor(Math.random() * 1000), d = document.createElement("div");
+    d.className = "lrow";
+    d.innerHTML = '<div class="lno" hidden><span></span><button type="button" class="rm" aria-label="Xoá người học này">✕ Xoá</button></div>' +
+      '<div class="two"><div class="field"><label class="lbl" for="ln' + k + '">Tên người học</label><input class="inp ln" id="ln' + k + '" maxlength="60" placeholder="Trần Minh (con chị Hoa)"></div>' +
+      '<div class="field"><label class="lbl" for="lp' + k + '">SĐT người học / phụ huynh</label><input class="inp lp" id="lp' + k + '" type="tel" inputmode="tel" maxlength="14" placeholder="0912 345 678"></div></div>';
+    $("learners").appendChild(d); renumber();
+    if (focus) d.querySelector(".ln").focus();
+  }
+  $("addL").addEventListener("click", function(){ addRow(true); });
+  $("learners").addEventListener("click", function(e){
+    var b = e.target.closest(".rm"); if (!b) return;
+    b.closest(".lrow").remove(); if (!rowsL().length) addRow(); renumber();
+  });
+  function resetRows(){ $("learners").innerHTML = ""; addRow(); }
+  resetRows();
+
+  function resultLine(x){
+    if (x.err) return "<li><b>" + esc(x.name) + "</b> — chưa gửi được: " + esc(x.err) + "</li>";
+    return x.valid ? "<li>✓ <b>" + esc(x.name) + "</b> — " + esc(x.uudai.replace(/^Giảm/, "giảm")) + "</li>"
+      : "<li>• <b>" + esc(x.name) + "</b> — chưa tính thưởng: " + esc(x.reason) + "</li>";
+  }
   $("fRef").addEventListener("submit", function(e){
     e.preventDefault();
-    var rname = $("rname").value.trim(), rphone = normPhone($("rphone").value), name = $("lname").value.trim(), phone = normPhone($("lphone").value);
-    var m = !rname ? "Bạn ghi họ tên của bạn nhé." : !rphone ? "SĐT của bạn chưa đúng (10 số)." : !name ? "Bạn ghi tên người học nhé." :
-      !phone ? "SĐT người học chưa đúng (10 số)." : phone === rphone ? "SĐT người học trùng với SĐT của bạn." : !prog ? "Bạn chọn chương trình nhé." :
-      !$("consent").checked ? "Bạn xác nhận người này đã đồng ý nhận cuộc gọi nhé." : "";
+    var rname = $("rname").value.trim(), rphone = normPhone($("rphone").value);
+    var rs = rowsL().filter(function(r){ return r.querySelector(".ln").value.trim() || r.querySelector(".lp").value.trim() || rowsL().length === 1; });
+    if (!rs.length) rs = rowsL().slice(0, 1);
+    var list = rs.map(function(r){ return {row: r, name: r.querySelector(".ln").value.trim(), phone: normPhone(r.querySelector(".lp").value)}; });
+    var many = list.length > 1, m = !rname ? "Bạn ghi họ tên của bạn nhé." : !rphone ? "SĐT của bạn chưa đúng (10 số)." : "", seen = {};
+    for (var i = 0; !m && i < list.length; i++) {
+      var w = many ? " " + (i + 1) : "", x = list[i];
+      m = !x.name ? "Bạn ghi tên người học" + w + " nhé." : !x.phone ? "SĐT người học" + w + " chưa đúng (10 số)." :
+        x.phone === rphone ? "SĐT người học" + w + " trùng với SĐT của bạn." : seen[x.phone] ? "SĐT người học" + w + " bị nhập trùng." : "";
+      if (m) (x.name ? x.row.querySelector(".lp") : x.row.querySelector(".ln")).focus();
+      seen[x.phone] = 1;
+    }
+    m = m || (!prog ? "Bạn chọn chương trình nhé." : !$("consent").checked ? (many ? "Bạn xác nhận những người này đã đồng ý nhận cuộc gọi nhé." : "Bạn xác nhận người này đã đồng ý nhận cuộc gọi nhé.") : "");
     if (m) return fail($("err"), m);
     $("err").textContent = ""; busy($("go"), true, "Đang gửi…");
-    post({t: "ref", rname: rname, rphone: rphone, name: name, phone: phone, prog: prog, consent: true, hp: $("hp").value}).then(function(r){
-      if (!r || !r.ok) throw new Error((r && r.err) || "Gửi chưa được");
-      if (r.code) remember({name: rname, phone: rphone, code: r.code}); else remember({phone: rphone});
+    var done = [], idx = 0;
+    // Gửi lần lượt từng người (máy chủ nhận 1 người/lượt)
+    function next(){
+      if (idx >= list.length) return Promise.resolve();
+      var x = list[idx++];
+      if (many) $("go").querySelector("span").textContent = "Đang gửi " + idx + "/" + list.length + "…";
+      return post({t: "ref", rname: rname, rphone: rphone, name: x.name, phone: x.phone, prog: prog, consent: true, hp: $("hp").value}).then(function(r){
+        if (!r || !r.ok) throw new Error((r && r.err) || "Gửi chưa được");
+        if (r.code) remember({name: rname, phone: rphone, code: r.code}); else remember({phone: rphone});
+        done.push({name: x.name, valid: r.valid, reason: r.reason, uudai: r.uudai || ""});
+        x.row.remove();
+        return next();
+      });
+    }
+    next().then(function(){
       $("fRef").hidden = true; $("refOk").hidden = false;
-      if (r.valid) {
+      var ok = done.filter(function(x){ return x.valid; }).length;
+      $("refOkList").hidden = !many; $("refOkList").innerHTML = many ? done.map(resultLine).join("") : "";
+      if (many) {
+        $("refOkH").textContent = ok ? "Cảm ơn bạn!" : "AZ đã nhận thông tin";
+        $("refOkTxt").innerHTML = "AZ đã nhận <b>" + done.length + " người</b> bạn giới thiệu" + (ok ? ", <b>" + ok + " người được tính thưởng</b>. Bạn nhận thưởng ngay khi từng người đóng học phí." : ". AZ vẫn sẽ liên hệ từng người.");
+      } else if (done[0].valid) {
+        var name = done[0].name;
         $("refOkH").textContent = "Cảm ơn bạn!";
-        $("refOkTxt").innerHTML = "AZ sẽ gọi <b>" + esc(name) + "</b> sớm. " + esc(name) + " được <b>" + esc(r.uudai.replace(/^Giảm/, "giảm")) + "</b>; bạn nhận thưởng ngay khi " + esc(name) + " đóng học phí.";
+        $("refOkTxt").innerHTML = "AZ sẽ gọi <b>" + esc(name) + "</b> sớm. " + esc(name) + " được <b>" + esc(done[0].uudai.replace(/^Giảm/, "giảm")) + "</b>; bạn nhận thưởng ngay khi " + esc(name) + " đóng học phí.";
       } else {
         $("refOkH").textContent = "AZ đã nhận thông tin";
-        $("refOkTxt").innerHTML = "Lượt này <b>chưa được tính thưởng</b>: " + esc(r.reason) + ". AZ vẫn sẽ liên hệ người học.";
+        $("refOkTxt").innerHTML = "Lượt này <b>chưa được tính thưởng</b>: " + esc(done[0].reason) + ". AZ vẫn sẽ liên hệ người học.";
       }
       $("refOkCard").innerHTML = ""; if (me.code) $("refOkCard").appendChild(cardBlock());
-    }).catch(function(e){ fail($("err"), netErr(e)); }).then(function(){ busy($("go"), false); });
+      resetRows();
+    }).catch(function(e){
+      // Người đã gửi xong được bỏ khỏi form; người còn lại giữ nguyên để gửi lại
+      if (!rowsL().length) addRow();
+      renumber();
+      fail($("err"), (done.length ? "Đã gửi " + done.length + " người. Những người còn lại chưa gửi được: " : "") + netErr(e));
+    }).then(function(){ busy($("go"), false); renumber(); });
   });
   $("more").addEventListener("click", function(){
-    $("refOk").hidden = true; $("fRef").hidden = false; $("lname").value = ""; $("lphone").value = ""; $("consent").checked = false; $("lname").focus();
+    $("refOk").hidden = true; $("fRef").hidden = false; resetRows(); $("consent").checked = false; rowsL()[0].querySelector(".ln").focus();
   });
 
   // 2. Link
