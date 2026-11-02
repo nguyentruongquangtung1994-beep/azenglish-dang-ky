@@ -219,6 +219,7 @@ button,input{font:inherit;color:inherit}
 .btn.main.ready{animation:halo 1.6s ease-out infinite}
 @keyframes halo{0%{box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 12px 24px -10px rgba(215,25,45,.65),0 0 0 0 rgba(215,25,45,.5)}75%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 12px 24px -10px rgba(215,25,45,.65),0 0 0 16px rgba(215,25,45,0)}}
 .bar-r{display:flex;align-items:center;gap:10px}
+@media (max-width:560px){.bar-test{width:auto!important;padding:0 12px!important}.bar-test span{display:inline!important;font-size:13px}.bar-test span b{display:none}.logo small{display:none}}
 .bar-reg{display:none;min-height:40px;padding:0 18px;font-size:14px;border-radius:999px}
 body.formoff .bar-reg{display:inline-flex}
 @media (max-width:900px){body.formoff .bar-reg{display:none}}
@@ -303,6 +304,28 @@ body.formoff .bar-reg{display:inline-flex}
 .dock.on{transform:none}
 .dock .btn{width:100%;box-shadow:0 18px 40px -12px rgba(11,20,36,.6)}
 @media (min-width:901px){.dock{display:none}}
+/* Mục Test trình độ */
+.tcard{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;border-radius:24px;padding:44px;background:radial-gradient(520px 300px at 100% 0%,rgba(245,196,81,.18),transparent 60%),linear-gradient(150deg,#0B1424,#16284A);color:#fff;box-shadow:var(--sh-3)}
+.tc-copy .k{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2)}
+.tc-copy h2{font-family:var(--serif);font-size:clamp(28px,3.6vw,40px);line-height:1.12;margin:8px 0 12px}
+.tc-copy h2 em{font-style:normal;color:var(--gold-3)}
+.tc-copy p{color:#BAC5D6;margin:0 0 18px}
+.tc-copy ul{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.tc-copy li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 12px;font-size:13px;color:#C9D2E3}
+.tc-copy li b{display:block;font:700 20px/1.1 var(--serif);color:#fff}
+.tc-copy small{display:block;margin-top:12px;color:#8E9BB2;font-size:12.5px}
+.tc-demo{background:#fff;color:var(--ink);border-radius:20px;padding:24px;position:relative;box-shadow:0 30px 60px -28px rgba(0,0,0,.7);transform:rotate(1.5deg)}
+.tc-demo .tag{position:absolute;top:14px;right:14px;font-size:11px;font-weight:700;color:var(--gold);background:var(--gold-soft);border-radius:999px;padding:4px 10px}
+.tc-demo .ring{width:118px;height:118px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--p)*1%),var(--bg-2) 0);position:relative}
+.tc-demo .ring::before{content:"";position:absolute;inset:9px;border-radius:50%;background:#fff}
+.tc-demo .ring div{position:relative;text-align:center}
+.tc-demo .ring b{display:block;font:700 36px/1 var(--serif);color:var(--night)}
+.tc-demo .ring span{font-size:11.5px;color:var(--ink-3)}
+.tc-demo .bars div{display:grid;grid-template-columns:44px 1fr 28px;gap:10px;align-items:center;font-size:13px;margin-bottom:8px}
+.tc-demo .bars i{height:8px;border-radius:8px;background:linear-gradient(90deg,var(--gold) var(--w),var(--bg-2) var(--w))}
+.tc-demo .bars em{font-style:normal;font-weight:700;color:var(--night)}
+.tc-demo p{margin:12px 0 0;font-size:13.5px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:900px){.tcard{grid-template-columns:1fr;padding:30px 22px}.tc-demo{transform:none}}
 /* Video lớp AZJunior */
 .vsec{position:relative;color:#fff;overflow:hidden;background:radial-gradient(700px 360px at 85% 0%,rgba(215,25,45,.28),transparent 60%),radial-gradient(600px 360px at 0% 100%,rgba(58,96,170,.25),transparent 60%),linear-gradient(160deg,#0B1424,#13233B)}
 .vsec .sec-h h2{color:#fff}.vsec .sec-h p{color:#BAC5D6}.vsec .sec-h .k{color:var(--gold-2)}
@@ -366,7 +389,7 @@ body.formoff .bar-reg{display:inline-flex}
 
 <header class="bar" id="bar"><div class="wrap">
   <a class="logo" href="#top"><span class="m">AZ</span><span><b>AZEnglish</b><small>Tuyển sinh 2026</small></span></a>
-  <div class="bar-r"><a class="bar-cta" href="https://zalo.me/0971882096" target="_blank" rel="noopener"><svg><use href="#i-phone"/></svg><span>0971 882 096</span></a><a class="btn main bar-reg" href="#form"><span>Đăng ký tư vấn</span></a></div>
+  <div class="bar-r"><a class="bar-cta bar-test" href="../kiem-tra/"><span>📝 Test<b> trình độ</b></span></a><a class="bar-cta" href="https://zalo.me/0971882096" target="_blank" rel="noopener"><svg><use href="#i-phone"/></svg><span>0971 882 096</span></a><a class="btn main bar-reg" href="#form"><span>Đăng ký tư vấn</span></a></div>
 </div></header>
 
 <section class="hero" id="top">
@@ -416,6 +439,11 @@ body.formoff .bar-reg{display:inline-flex}
         </div>
 
         <div class="field">
+          <label class="lbl" for="name">Họ và tên</label>
+          <input class="inp" id="name" autocomplete="name" placeholder="Ví dụ: Nguyễn Thị Lan (mẹ bé An)" maxlength="60">
+        </div>
+
+        <div class="field">
           <span class="lbl">Bạn là</span>
           <div class="seg" id="role"><button type="button" data-v="ph" aria-pressed="true">Phụ huynh</button><button type="button" data-v="hv" aria-pressed="false">Học viên</button></div>
         </div>
@@ -426,12 +454,7 @@ body.formoff .bar-reg{display:inline-flex}
         </div>
 
         <details class="more" id="more">
-          <summary>Thêm họ tên & giờ gọi <small>không bắt buộc</small></summary>
-        <div class="field">
-          <label class="lbl" for="name">Họ tên</label>
-          <input class="inp" id="name" autocomplete="name" placeholder="Ví dụ: Chị Lan (mẹ bé An)" maxlength="60">
-        </div>
-
+          <summary>Giờ tiện nghe máy <small>tuỳ chọn</small></summary>
         <div class="field">
           <span class="lbl">Giờ tiện nghe máy</span>
           <div class="chips" id="time"><button type="button" class="chip" data-v="Sáng" aria-pressed="false">Sáng</button><button type="button" class="chip" data-v="Chiều" aria-pressed="false">Chiều</button><button type="button" class="chip" data-v="Tối" aria-pressed="false">Tối</button></div>
@@ -478,6 +501,35 @@ body.formoff .bar-reg{display:inline-flex}
       <article class="card pc rv"><span class="ic"><svg><use href="#i-book"/></svg></span><span class="t">Học sinh cấp 2 – 3</span><h3>Tiếng Anh THCS – THPT</h3><p>Nắm chắc kiến thức trên lớp và tăng điểm thi tiếng Anh, từ bài kiểm tra định kỳ đến kỳ thi chuyển cấp.</p>
         <ul><li><svg><use href="#i-check"/></svg>Bám sát chương trình SGK</li><li><svg><use href="#i-check"/></svg>Ngữ pháp & từ vựng theo khối lớp</li><li><svg><use href="#i-check"/></svg>Luyện đề thi vào 10 và tốt nghiệp THPT</li></ul>
         <button class="btn line block" data-pick="thcs">Chọn THCS – THPT</button></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="test">
+  <div class="wrap">
+    <div class="tcard rv">
+      <div class="tc-copy">
+        <span class="k">Test trình độ miễn phí</span>
+        <h2>Bạn đang ở trình độ <em>nào?</em></h2>
+        <p>Làm bài thi thử online 20 phút, biết ngay trình độ theo khung CEFR và lộ trình phù hợp. Đề tự điều chỉnh độ khó theo bạn.</p>
+        <ul>
+          <li><b>4</b>phần: Định vị · Đọc · Nghe · Viết</li>
+          <li><b>20'</b>làm ngay trên điện thoại</li>
+          <li><b>A1 → C2</b>kết quả chuẩn quốc tế</li>
+        </ul>
+        <a class="btn main" href="../kiem-tra/"><span>Làm bài test ngay</span><svg><use href="#i-arrow"/></svg></a>
+        <small>Dành cho Giao tiếp · TOEIC · THCS–THPT · AZJunior. IELTS có bài kiểm tra 4 kỹ năng riêng.</small>
+      </div>
+      <div class="tc-demo" aria-hidden="true">
+        <span class="tag">Ví dụ kết quả</span>
+        <div class="ring" style="--p:58"><div><b>B1</b><span>Trung cấp</span></div></div>
+        <div class="bars">
+          <div><span>Đọc</span><i style="--w:64%"></i><em>B2</em></div>
+          <div><span>Nghe</span><i style="--w:55%"></i><em>B1</em></div>
+          <div><span>Viết</span><i style="--w:42%"></i><em>B1</em></div>
+        </div>
+        <p>Lộ trình gợi ý: <b>IELTS từ Giai đoạn 2</b></p>
+      </div>
     </div>
   </div>
 </section>
@@ -616,10 +668,10 @@ body.formoff .bar-reg{display:inline-flex}
 
   // Thanh tiến độ 3 bước + nút gửi tỏa sáng khi đủ
   function upd(){
-    var a = !!S.prog, b = !!normPhone($("phone").value), m = !!S.mode, c = $("consent").checked, n = a + b + m + c;
+    var a = !!S.prog, b = !!normPhone($("phone").value) && $("name").value.trim().length >= 2, m = !!S.mode, c = $("consent").checked, n = a + b + m + c;
     $("pbar").style.width = Math.max(6, n / 4 * 100) + "%";
     $("ppct").textContent = Math.round(n / 4 * 100) + "%";
-    $("pstep").innerHTML = !a ? "Bước 1/4 · Chọn chương trình" : !b ? "Bước 2/4 · Nhập số điện thoại" : !m ? "Bước 3/4 · Chọn Online / Offline" : !c ? "Bước 4/4 · Tích đồng ý" : "<b>Sẵn sàng — bấm gửi nhé!</b>";
+    $("pstep").innerHTML = !a ? "Bước 1/4 · Chọn chương trình" : !b ? "Bước 2/4 · Nhập SĐT & họ tên" : !m ? "Bước 3/4 · Chọn Online / Offline" : !c ? "Bước 4/4 · Tích đồng ý" : "<b>Sẵn sàng — bấm gửi nhé!</b>";
     $("go").classList.toggle("ready", n === 4);
   }
   ["click", "input", "change"].forEach(function(ev){ $("f").addEventListener(ev, function(){ setTimeout(upd, 0); }); });
@@ -646,6 +698,7 @@ body.formoff .bar-reg{display:inline-flex}
     var phone = normPhone($("phone").value);
     if (!S.prog) return fail("Bạn chọn chương trình quan tâm nhé.");
     if (!phone) return fail("Số điện thoại chưa đúng (10 số, bắt đầu bằng 0).", $("phone"));
+    if ($("name").value.trim().length < 2) return fail("Bạn ghi họ và tên nhé.", $("name"));
     if (!S.mode) return fail("Bạn chọn học Online hay Offline nhé.");
     if (!$("consent").checked) return fail("Bạn tích ô đồng ý để AZ liên hệ nhé.");
     var body = {t: "reg", phone: phone, prog: S.prog, role: S.role, mode: S.mode, test: testSummary(), name: $("name").value.trim(), time: S.time, src: src, ref: ref, consent: true, hp: $("hp").value};
