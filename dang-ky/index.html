@@ -807,9 +807,9 @@ function azGiftCards(prog, cls){
   }
   function done(r){
     $("f").hidden = true; $("ok").hidden = false;
-    var nm = $("name").value.trim(), who = S.role === "hv" ? "Quý học viên" : "Quý phụ huynh";
-    $("okH").textContent = nm ? "Cảm ơn " + nm : "Cảm ơn " + who;
-    $("okTxt").textContent = r.offline ? "Đường truyền đang gián đoạn. Thông tin đã được lưu trên thiết bị và sẽ tự gửi lại; " + who + " vui lòng liên hệ Zalo để được hỗ trợ sớm nhất."
+    var nm = $("name").value.trim(), who = S.role === "hv" ? "bạn" : "Quý phụ huynh";
+    $("okH").textContent = S.role === "hv" ? "Cảm ơn bạn" + (nm ? " " + nm : "") : "Cảm ơn Quý phụ huynh";
+    $("okTxt").textContent = r.offline ? "Đường truyền đang gián đoạn. Thông tin đã được lưu trên thiết bị và sẽ tự gửi lại. Vui lòng liên hệ Zalo để được hỗ trợ sớm nhất."
       : r.dup ? "AZEnglish đã nhận đăng ký trước đó của " + who + ". Tư vấn viên sẽ sớm liên hệ."
       : "AZEnglish đã nhận đăng ký của " + who + ". Tư vấn viên sẽ liên hệ trong vòng 2 giờ làm việc.";
     var ph = normPhone($("phone").value);

@@ -892,7 +892,7 @@ function azGiftCards(prog, cls){
     var box = $("leadBox");
     post({t: "reg", phone: S.phone, prog: rc.prog, role: "hv", name: S.name, mode: S.mode, src: "Test trình độ", test: sum, consent: true}).then(function(r){
       if (!r || !r.ok) throw new Error((r && r.err) || "Gửi chưa được");
-      box.innerHTML = '<span class="k" style="font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)">Đã gửi kết quả</span><h3>Cảm ơn ' + esc(S.name) + '</h3>' +
+      box.innerHTML = '<span class="k" style="font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)">Đã gửi kết quả</span><h3>Cảm ơn bạn ' + esc(S.name) + '</h3>' +
         '<p>AZEnglish đã nhận kết quả <b>' + x.cefr + '</b>. Tư vấn viên sẽ liên hệ số ' + esc(S.phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3")) + ' trong vòng 2 giờ làm việc để giải thích kết quả và xếp lộ trình ' + (S.mode === "online" ? "học Online" : "tại trung tâm") + '.</p>' +
         '<p class="nt" style="font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:16px 0 8px">Quà tặng từ AZEnglish</p><div class="gifts">' + azGiftCards(rc.prog) + '</div>' +
         '<a class="btn dark block" style="margin-top:14px" href="https://zalo.me/0971882096" target="_blank" rel="noopener">Liên hệ AZEnglish qua Zalo</a>';
