@@ -223,6 +223,20 @@ button,input{font:inherit;color:inherit}
 .bar-reg{display:none;min-height:40px;padding:0 18px;font-size:14px;border-radius:999px}
 body.formoff .bar-reg{display:inline-flex}
 @media (max-width:900px){body.formoff .bar-reg{display:none}}
+.feat{display:flex;gap:16px;align-items:center;max-width:430px;margin:0 0 30px;padding:12px 18px 12px 12px;border-radius:18px;text-decoration:none;color:#fff;background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.04));border:1px solid rgba(227,194,122,.45);box-shadow:0 24px 50px -24px rgba(0,0,0,.7);backdrop-filter:blur(8px);transition:transform .3s var(--ease),border-color .3s}
+.feat:hover{transform:translateY(-3px);border-color:var(--gold-3)}
+.feat .fph{flex:none;width:112px;height:128px;border-radius:12px;overflow:hidden;box-shadow:0 0 0 2px rgba(227,194,122,.6);background:#1B2B44}
+.feat .fph img{width:190%;max-width:none;margin:-60% 0 0 -45%}
+.feat .fi{display:flex;flex-direction:column;gap:2px;min-width:0}
+.feat .fk{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-2)}
+.feat .fs{display:flex;align-items:baseline;gap:6px}
+.feat .fs b{font:700 46px/1 var(--serif);background:linear-gradient(180deg,#FFF3D1,var(--gold-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.feat .fs small{font-size:13px;font-weight:700;color:#C9D2E3}
+.feat .fn{font-weight:700;font-size:15px}
+.feat .fc{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.feat .fc em{font-style:normal;font-size:12px;font-weight:600;color:#E5EAF2;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:3px 9px}
+.feat .fc em i{font-style:normal;margin-left:5px;color:var(--gold-3);font-weight:700}
+@media (max-width:900px){.feat{display:none}}
 .hero-steps{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 30px;padding:0;list-style:none}
 .hero-steps li{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:#D7DEEA}
 .hero-steps li b{width:26px;height:26px;border-radius:50%;border:1px solid rgba(227,194,122,.6);color:var(--gold-3);display:grid;place-items:center;font:700 13px/1 var(--serif)}
@@ -422,6 +436,15 @@ body.formoff .bar-reg{display:inline-flex}
 <section class="hero" id="top">
   <div class="wrap">
     <div class="copy">
+      <a class="feat" href="#ket-qua" data-res="toeic">
+        <span class="fph"><img src="assets/toeic-950.jpg" alt="Ngọc Anh nhận phiếu điểm TOEIC 950 tại AZEnglish"></span>
+        <span class="fi">
+          <span class="fk">Thành tích học viên AZ</span>
+          <span class="fs"><b>950</b><small>/990 TOEIC</small></span>
+          <span class="fn">Ngọc Anh</span>
+          <span class="fc"><em>Listening 495<i>tối đa</i></em><em>Reading 455</em></span>
+        </span>
+      </a>
       <span class="eyebrow"><i></i>Tư vấn & kiểm tra trình độ miễn phí</span>
       <h1>Học đúng lộ trình,<br><em>thấy rõ kết quả.</em></h1>
       <p class="lead">Để lại số điện thoại, tư vấn viên AZEnglish gọi lại trong 2 giờ làm việc, kiểm tra trình độ và xếp lộ trình phù hợp cho bạn hoặc con.</p>
@@ -698,7 +721,7 @@ function azGiftCards(prog, cls){
   ];
   // Phiếu điểm TOEIC (ảnh từ TOEIC Grammar & Vocab Trainer/assets — không có tên đi kèm)
   var TOEIC = [
-    {img: "assets/toeic-950.jpg", name: "TOEIC L&R", ov: "950", when: "Listening 495 · Reading 455"},
+    {img: "assets/toeic-950.jpg", name: "Ngọc Anh", ov: "950", when: "Listening 495 · Reading 455"},
     {img: "assets/toeic-885.jpg", name: "TOEIC L&R", ov: "885", when: "Listening 465 · Reading 420"},
     {img: "assets/toeic-765.jpg", name: "TOEIC L&R", ov: "765", when: "Listening 375 · Reading 390"}
   ];
@@ -850,6 +873,7 @@ function azGiftCards(prog, cls){
   }
   drawRes(S.prog === "toeic" ? "toeic" : "ielts", true);
   if (S.prog === "toeic") $("resSeg").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.k === "toeic" ? "true" : "false"); });
+  document.querySelectorAll("[data-res]").forEach(function(a){ a.addEventListener("click", function(){ var b = $("resSeg").querySelector('[data-k="' + a.dataset.res + '"]'); if (b) b.click(); }); });
   $("resSeg").addEventListener("click", function(e){
     var b = e.target.closest("button"); if (!b) return;
     $("resSeg").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
