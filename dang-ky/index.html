@@ -330,6 +330,24 @@ body.formoff .bar-reg{display:inline-flex}
 .dock.on{transform:none}
 .dock .btn{width:100%;box-shadow:0 18px 40px -12px rgba(11,20,36,.6)}
 @media (min-width:901px){.dock{display:none}}
+/* Khung 5 phần quà trong form */
+.gbox{position:relative;margin:0 0 18px;padding:14px 14px 12px;border-radius:14px;background:linear-gradient(160deg,#0B1424,#16284A);color:#fff;overflow:hidden;box-shadow:0 14px 30px -18px rgba(11,20,36,.8)}
+.gbox::before{content:"";position:absolute;inset:0;border-radius:14px;padding:1.5px;background:linear-gradient(120deg,var(--gold),#F5DC9A,var(--gold));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.gbox::after{content:"";position:absolute;top:0;bottom:0;width:70px;left:-90px;background:linear-gradient(90deg,transparent,rgba(255,240,200,.18),transparent);transform:skewX(-20deg);animation:gshine 5s 1s infinite;pointer-events:none}
+@keyframes gshine{0%{left:-90px}25%,100%{left:110%}}
+.gb-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.gb-ic{flex:none;width:38px;height:38px;border-radius:11px;background:linear-gradient(180deg,#F5DC9A,var(--gold));color:var(--night);display:grid;place-items:center}
+.gb-ic svg{width:20px;height:20px}
+.gb-h b{display:block;font:700 18px/1.2 var(--serif);color:#fff}
+.gb-h small{display:block;font-size:12px;color:#BAC5D6}
+.gb-n{margin-left:auto;flex:none;font:700 34px/1 var(--serif);background:linear-gradient(180deg,#FFF3D1,var(--gold-3));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gb-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.gb-list li{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#E5EAF2;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:7px 9px;animation:gin .4s var(--d,0ms) both}
+.gb-list li:last-child:nth-child(odd){grid-column:1/-1}
+@keyframes gin{from{opacity:0;transform:translateY(6px)}}
+.gl-ic{flex:none;width:22px;height:22px;border-radius:7px;background:rgba(245,196,81,.16);color:var(--gold-3);display:grid;place-items:center}
+.gl-ic svg{width:13px;height:13px}
+@media (max-width:360px){.gb-list{grid-template-columns:1fr}}
 /* Trang cảm ơn — trang trọng */
 .thanks{text-align:left}
 .thanks .seal{width:76px;height:76px;margin:4px auto 12px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,#FFF6DD,#F3E3B5);box-shadow:inset 0 0 0 2px var(--gold),0 10px 24px -12px rgba(184,145,58,.8)}
@@ -463,7 +481,7 @@ body.formoff .bar-reg{display:inline-flex}
           </a>
         </div>
       </div>
-      <span class="eyebrow"><i></i>Tư vấn & kiểm tra trình độ miễn phí</span>
+      <span class="eyebrow"><i></i>Tư vấn miễn phí · Tặng ngay 5 phần quà</span>
       <h1>Học đúng lộ trình,<br><em>thấy rõ kết quả.</em></h1>
       <p class="lead">Để lại số điện thoại, tư vấn viên AZEnglish gọi lại trong 2 giờ làm việc, kiểm tra trình độ và xếp lộ trình phù hợp cho bạn hoặc con.</p>
       <ol class="hero-steps"><li><b>1</b>Chọn chương trình</li><li><b>2</b>Để lại SĐT</li><li><b>3</b>AZ gọi lại</li></ol>
@@ -483,6 +501,10 @@ body.formoff .bar-reg{display:inline-flex}
           <span class="badge"><svg width="14" height="14"><use href="#i-clock"/></svg>Gọi lại ≤ 2 giờ</span>
         </div>
         <div class="pgs" aria-hidden="true"><div class="tr"><i id="pbar"></i></div><div class="st"><span id="pstep">Bước 1/4 · Chọn chương trình</span><span id="ppct">0%</span></div></div>
+        <div class="gbox">
+          <div class="gb-h"><span class="gb-ic"><svg><use href="#i-gift"/></svg></span><span><b>Nhận ngay 5 phần quà</b><small>từ AZEnglish khi đăng ký · hoàn toàn miễn phí</small></span><span class="gb-n">5</span></div>
+          <ul class="gb-list" id="gList"></ul>
+        </div>
         <div class="gift" id="refBox" hidden><span class="gi"><svg><use href="#i-gift"/></svg></span><span id="refTxt"></span></div>
 
         <div class="field">
@@ -529,11 +551,10 @@ body.formoff .bar-reg{display:inline-flex}
         </div>
 
         </details>
-        <div class="gteaser"><svg><use href="#i-gift"/></svg><span>Kèm theo đăng ký: <b>bộ quà tự học miễn phí</b> từ AZEnglish — <span id="gList">Vocab Arena, AZ Grammar và lộ trình tự học 4 tuần</span>.</span></div>
         <input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label class="check"><input type="checkbox" id="consent"><span>Tôi đồng ý để AZEnglish gọi điện / nhắn Zalo tư vấn. Thông tin chỉ dùng cho việc tư vấn khóa học.</span></label>
         <div class="err" id="err" role="alert"></div>
-        <button class="btn main block" id="go" type="submit"><span>Nhận tư vấn & quà tặng</span><svg><use href="#i-arrow"/></svg></button>
+        <button class="btn main block" id="go" type="submit"><span>Đăng ký & nhận 5 phần quà</span><svg><use href="#i-arrow"/></svg></button>
         <p class="fine"><svg><use href="#i-lock"/></svg>Không spam · Không chia sẻ cho bên thứ ba</p>
         <p class="fine" style="margin-top:6px;display:block">Chưa biết trình độ? <a href="../kiem-tra/">Làm bài test miễn phí 20 phút →</a></p>
       </form>
@@ -669,7 +690,7 @@ body.formoff .bar-reg{display:inline-flex}
 </section>
 
 <footer class="foot"><div class="wrap"><span>© AZEnglish · Tiếng Anh cho học sinh, sinh viên và người đi làm</span><span>Hotline / Zalo <a href="https://zalo.me/0971882096" target="_blank" rel="noopener">0971 882 096</a></span></div></footer>
-<div class="dock" id="dock"><a class="btn main" href="#form"><span>Đăng ký tư vấn miễn phí</span><svg><use href="#i-arrow"/></svg></a></div>
+<div class="dock" id="dock"><a class="btn main" href="#form"><span>Đăng ký & nhận 5 phần quà</span><svg><use href="#i-arrow"/></svg></a></div>
 
 <script>// Quà tặng = các chương trình tự học MIỄN PHÍ AZ đang chạy (link đã kiểm tra 02/11/2026). Dùng chung: đăng ký, test, tự học.
 var AZ_TOOLS = {
@@ -681,20 +702,21 @@ var AZ_TOOLS = {
   kids:     {e: "kid", t: "Vocab Kid", d: "Thẻ từ có hình cho bé, song ngữ Việt – Anh", u: "https://vocab.azenglish.vn/vocab-kids/"},
   toeicTr:  {e: "test", t: "TOEIC Trainer", d: "Luyện đề TOEIC có giải thích", u: "https://nguyentruongquangtung1994-beep.github.io/AZTOEIC-trainer/"},
   toeicLis: {e: "ear", t: "TOEIC Listening Lab", d: "Nghe đục lỗ đề ETS 2023 từng câu", u: "https://nguyentruongquangtung1994-beep.github.io/AZTOEIC-trainer/listening-lab/"},
-  academy:  {e: "cap", t: "AZIELTS Academy – dùng thử 7 ngày", d: "Writing chấm band, đề Cambridge Reading & Listening", u: "https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/academy.html"},
+  academy:  {e: "cap", t: "Academy dùng thử 7 ngày", d: "Writing chấm band, đề Cambridge Reading & Listening", u: "https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/academy.html"},
+  test:     {e: "test", t: "Bài test trình độ online", d: "Kết quả CEFR và lộ trình gợi ý ngay", u: "../kiem-tra/"},
   roadmap:  {e: "map", t: "Lộ trình tự học 4 tuần", d: "Mỗi ngày 20–30 phút, theo đúng khóa bạn chọn", u: "../tu-hoc/"}
 };
 // Bộ quà theo chương trình (thứ tự = mức ưu tiên hiển thị)
-var AZ_GIFTS = {
-  ielts:    ["academy", "ieltsVoc", "grammar", "roadmap"],
-  toeic:    ["toeicTr", "toeicLis", "toeicVoc", "roadmap"],
-  giaotiep: ["arena", "grammar", "vocab", "roadmap"],
-  junior:   ["kids", "arena", "roadmap"],
-  thcs:     ["grammar", "arena", "vocab", "roadmap"],
-  tuvan:    ["arena", "grammar", "roadmap"]
+var AZ_GIFTS = { // mỗi khóa đúng 5 món (khung "5 phần quà" trên form)
+  ielts:    ["academy", "ieltsVoc", "vocab", "grammar", "roadmap"],
+  toeic:    ["toeicTr", "toeicLis", "toeicVoc", "grammar", "roadmap"],
+  giaotiep: ["test", "arena", "grammar", "vocab", "roadmap"],
+  junior:   ["kids", "arena", "grammar", "test", "roadmap"],
+  thcs:     ["test", "grammar", "arena", "vocab", "roadmap"],
+  tuvan:    ["test", "arena", "grammar", "vocab", "roadmap"]
 };
 function azGiftCards(prog, cls){
-  return (AZ_GIFTS[prog] || AZ_GIFTS.tuvan).map(function(k){
+  return (AZ_GIFTS[prog] || AZ_GIFTS.tuvan).filter(function(k){ return !(k === "test" && /kiem-tra/.test(location.pathname)); }).map(function(k){
     var g = AZ_TOOLS[k], u = k === "roadmap" ? g.u + "?p=" + (prog === "tuvan" ? "giaotiep" : prog) : g.u;
     return '<a class="' + (cls || "gcard") + '" href="' + u + '" target="_blank" rel="noopener"><span class="ge"><svg><use href="#g-' + g.e + '"/></svg></span><span><b>' + g.t + '</b><small>' + g.d + '</small></span></a>';
   }).join("");
@@ -788,7 +810,11 @@ function azGiftCards(prog, cls){
   (function(){ var t = store("azkt_last"); if (t && t.cefr && Q.get("from") === "test") { $("refBox").hidden = false; $("refTxt").innerHTML = "Kết quả test của bạn: <b>" + t.cefr + "</b> — AZ sẽ tư vấn lộ trình đúng trình độ này."; } })();
 
   var PNAME = {ielts: "IELTS", toeic: "TOEIC", giaotiep: "Tiếng Anh giao tiếp", junior: "AZJunior Public Speaking & Debate", thcs: "Tiếng Anh THCS – THPT", tuvan: "Cần AZ tư vấn"};
-  function giftList(){ var ks = AZ_GIFTS[S.prog] || AZ_GIFTS.tuvan; $("gList").textContent = ks.map(function(k){ return AZ_TOOLS[k].t; }).join(", "); }
+  function giftList(){
+    var ks = AZ_GIFTS[S.prog] || AZ_GIFTS.tuvan;
+    $("gList").innerHTML = ks.map(function(k, i){ var g = AZ_TOOLS[k]; return '<li style="--d:' + (i * 60) + 'ms"><span class="gl-ic"><svg><use href="#g-' + g.e + '"/></svg></span><span>' + g.t + '</span></li>'; }).join("");
+  }
+  giftList();
 
   // Thanh tiến độ 3 bước + nút gửi tỏa sáng khi đủ
   function upd(){

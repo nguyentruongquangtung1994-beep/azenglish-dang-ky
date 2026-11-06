@@ -650,20 +650,21 @@ var AZ_TOOLS = {
   kids:     {e: "kid", t: "Vocab Kid", d: "Thẻ từ có hình cho bé, song ngữ Việt – Anh", u: "https://vocab.azenglish.vn/vocab-kids/"},
   toeicTr:  {e: "test", t: "TOEIC Trainer", d: "Luyện đề TOEIC có giải thích", u: "https://nguyentruongquangtung1994-beep.github.io/AZTOEIC-trainer/"},
   toeicLis: {e: "ear", t: "TOEIC Listening Lab", d: "Nghe đục lỗ đề ETS 2023 từng câu", u: "https://nguyentruongquangtung1994-beep.github.io/AZTOEIC-trainer/listening-lab/"},
-  academy:  {e: "cap", t: "AZIELTS Academy – dùng thử 7 ngày", d: "Writing chấm band, đề Cambridge Reading & Listening", u: "https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/academy.html"},
+  academy:  {e: "cap", t: "Academy dùng thử 7 ngày", d: "Writing chấm band, đề Cambridge Reading & Listening", u: "https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/academy.html"},
+  test:     {e: "test", t: "Bài test trình độ online", d: "Kết quả CEFR và lộ trình gợi ý ngay", u: "../kiem-tra/"},
   roadmap:  {e: "map", t: "Lộ trình tự học 4 tuần", d: "Mỗi ngày 20–30 phút, theo đúng khóa bạn chọn", u: "../tu-hoc/"}
 };
 // Bộ quà theo chương trình (thứ tự = mức ưu tiên hiển thị)
-var AZ_GIFTS = {
-  ielts:    ["academy", "ieltsVoc", "grammar", "roadmap"],
-  toeic:    ["toeicTr", "toeicLis", "toeicVoc", "roadmap"],
-  giaotiep: ["arena", "grammar", "vocab", "roadmap"],
-  junior:   ["kids", "arena", "roadmap"],
-  thcs:     ["grammar", "arena", "vocab", "roadmap"],
-  tuvan:    ["arena", "grammar", "roadmap"]
+var AZ_GIFTS = { // mỗi khóa đúng 5 món (khung "5 phần quà" trên form)
+  ielts:    ["academy", "ieltsVoc", "vocab", "grammar", "roadmap"],
+  toeic:    ["toeicTr", "toeicLis", "toeicVoc", "grammar", "roadmap"],
+  giaotiep: ["test", "arena", "grammar", "vocab", "roadmap"],
+  junior:   ["kids", "arena", "grammar", "test", "roadmap"],
+  thcs:     ["test", "grammar", "arena", "vocab", "roadmap"],
+  tuvan:    ["test", "arena", "grammar", "vocab", "roadmap"]
 };
 function azGiftCards(prog, cls){
-  return (AZ_GIFTS[prog] || AZ_GIFTS.tuvan).map(function(k){
+  return (AZ_GIFTS[prog] || AZ_GIFTS.tuvan).filter(function(k){ return !(k === "test" && /kiem-tra/.test(location.pathname)); }).map(function(k){
     var g = AZ_TOOLS[k], u = k === "roadmap" ? g.u + "?p=" + (prog === "tuvan" ? "giaotiep" : prog) : g.u;
     return '<a class="' + (cls || "gcard") + '" href="' + u + '" target="_blank" rel="noopener"><span class="ge"><svg><use href="#g-' + g.e + '"/></svg></span><span><b>' + g.t + '</b><small>' + g.d + '</small></span></a>';
   }).join("");
