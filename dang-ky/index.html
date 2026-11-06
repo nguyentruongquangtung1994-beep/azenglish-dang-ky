@@ -331,7 +331,7 @@ body.formoff .bar-reg{display:inline-flex}
 .dock .btn{width:100%;box-shadow:0 18px 40px -12px rgba(11,20,36,.6)}
 @media (min-width:901px){.dock{display:none}}
 /* Khung 5 phần quà trong form */
-.gbox{position:relative;margin:0 0 18px;padding:14px 14px 12px;border-radius:14px;background:linear-gradient(160deg,#0B1424,#16284A);color:#fff;overflow:hidden;box-shadow:0 14px 30px -18px rgba(11,20,36,.8)}
+.gbox{position:relative;margin:14px 0 4px;padding:14px 14px 12px;border-radius:14px;background:linear-gradient(160deg,#0B1424,#16284A);color:#fff;overflow:hidden;box-shadow:0 14px 30px -18px rgba(11,20,36,.8)}
 .gbox::before{content:"";position:absolute;inset:0;border-radius:14px;padding:1.5px;background:linear-gradient(120deg,var(--gold),#F5DC9A,var(--gold));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .gbox::after{content:"";position:absolute;top:0;bottom:0;width:70px;left:-90px;background:linear-gradient(90deg,transparent,rgba(255,240,200,.18),transparent);transform:skewX(-20deg);animation:gshine 5s 1s infinite;pointer-events:none}
 @keyframes gshine{0%{left:-90px}25%,100%{left:110%}}
@@ -501,10 +501,6 @@ body.formoff .bar-reg{display:inline-flex}
           <span class="badge"><svg width="14" height="14"><use href="#i-clock"/></svg>Gọi lại ≤ 2 giờ</span>
         </div>
         <div class="pgs" aria-hidden="true"><div class="tr"><i id="pbar"></i></div><div class="st"><span id="pstep">Bước 1/4 · Chọn chương trình</span><span id="ppct">0%</span></div></div>
-        <div class="gbox">
-          <div class="gb-h"><span class="gb-ic"><svg><use href="#i-gift"/></svg></span><span><b>Nhận ngay 5 phần quà</b><small>từ AZEnglish khi đăng ký · hoàn toàn miễn phí</small></span><span class="gb-n">5</span></div>
-          <ul class="gb-list" id="gList"></ul>
-        </div>
         <div class="gift" id="refBox" hidden><span class="gi"><svg><use href="#i-gift"/></svg></span><span id="refTxt"></span></div>
 
         <div class="field">
@@ -555,6 +551,10 @@ body.formoff .bar-reg{display:inline-flex}
         <label class="check"><input type="checkbox" id="consent"><span>Tôi đồng ý để AZEnglish gọi điện / nhắn Zalo tư vấn. Thông tin chỉ dùng cho việc tư vấn khóa học.</span></label>
         <div class="err" id="err" role="alert"></div>
         <button class="btn main block" id="go" type="submit"><span>Đăng ký & nhận 5 phần quà</span><svg><use href="#i-arrow"/></svg></button>
+        <div class="gbox">
+          <div class="gb-h"><span class="gb-ic"><svg><use href="#i-gift"/></svg></span><span><b>Nhận ngay 5 phần quà</b><small>từ AZEnglish khi đăng ký · hoàn toàn miễn phí</small></span><span class="gb-n">5</span></div>
+          <ul class="gb-list" id="gList"></ul>
+        </div>
         <p class="fine"><svg><use href="#i-lock"/></svg>Không spam · Không chia sẻ cho bên thứ ba</p>
         <p class="fine" style="margin-top:6px;display:block">Chưa biết trình độ? <a href="../kiem-tra/">Làm bài test miễn phí 20 phút →</a></p>
       </form>
@@ -694,7 +694,7 @@ body.formoff .bar-reg{display:inline-flex}
 
 <script>// Quà tặng = các chương trình tự học MIỄN PHÍ AZ đang chạy (link đã kiểm tra 02/11/2026). Dùng chung: đăng ký, test, tự học.
 var AZ_TOOLS = {
-  arena:    {e: "game", t: "Vocab Arena", d: "3000 từ giao tiếp, TOEIC, IELTS học bằng game", u: "https://vocab.azenglish.vn/"},
+  arena:    {e: "cards", t: "Từ vựng giao tiếp căn bản · 3000 từ", d: "3000 từ thông dụng theo chủ đề, học bằng game", u: "https://vocab.azenglish.vn/AZEnglish%201500%20Tu%CC%9B%CC%80%20Giao%20Tie%CC%82%CC%81p%20Co%CC%9B%20Ba%CC%89n%20(v1).html"},
   toeicVoc: {e: "brief", t: "Vocab Arena TOEIC", d: "Từ vựng TOEIC theo chủ đề, chơi mà nhớ", u: "https://vocab.azenglish.vn/AZEnglish%20TOEIC%20Vocab%20Arena%20(v2).html"},
   ieltsVoc: {e: "cap", t: "Vocab Arena IELTS", d: "1000 từ IELTS B1–C1 theo chủ đề", u: "https://vocab.azenglish.vn/AZEnglish%20Vocab%20Arena%20-%201000%20tu%CC%9B%CC%80%20IELTS%20B1-C1%20(v2).html"},
   grammar:  {e: "book", t: "AZ Grammar", d: "Nhiệm vụ ngữ pháp mỗi ngày 10–15 phút", u: "https://vocab.azenglish.vn/az-grammar/"},
