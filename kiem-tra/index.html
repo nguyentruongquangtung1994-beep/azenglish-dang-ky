@@ -287,6 +287,59 @@ button,input{font:inherit;color:inherit}
 .reco h3{font-family:var(--serif);font-size:24px;margin:0 0 6px}
 .reco ul{margin:10px 0 0;padding-left:20px;color:var(--ink-2)}
 .reco li{margin-bottom:4px}
+.seg4{grid-template-columns:repeat(4,1fr)}.seg4 button{font-size:13.5px;padding:0 4px}
+.field.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+select.inp{appearance:none;-webkit-appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8913A' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center;padding-right:34px;font-size:15px}
+.rp{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;margin:16px 0;box-shadow:var(--sh-2)}
+.rp .k{font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.rp h3{font-family:var(--serif);font-size:24px;margin:6px 0 10px;line-height:1.2}
+.rp p{color:var(--ink-2);font-size:14.5px;margin:0 0 8px}
+.vd p{position:relative;padding-left:18px}.vd p.nt::before{display:none}.vd p::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.conv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.conv div{background:var(--bg-2);border-radius:14px;padding:12px;text-align:center}
+.conv small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.conv b{font:700 24px/1.2 var(--serif);color:var(--night)}
+.gapbar{display:flex;align-items:center;gap:10px;margin:8px 0 12px;font-weight:700}
+.gapbar span{background:var(--night);color:#fff;border-radius:999px;padding:6px 14px;font-size:14px;white-space:nowrap}
+.gapbar i{flex:1;height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 8px,transparent 8px 14px)}
+.gapbar span.to{background:var(--gold);color:#fff}
+.vbox{border-left:4px solid var(--ok);background:var(--bg-2);border-radius:0 12px 12px 0;padding:12px 14px;margin-top:10px}
+.vbox b{font-size:11px;letter-spacing:.15em}.vbox.tight{border-color:var(--gold)}.vbox.far{border-color:#B42335}
+.vbox b{color:var(--ok)}.vbox.tight b{color:var(--gold)}.vbox.far b{color:#B42335}
+.vbox p{margin:4px 0 0}
+.dg{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+.dg td{padding:9px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.dg td:first-child{color:var(--ink-3);font-size:12.5px;width:56px}
+.dg .pc{white-space:nowrap;font-weight:700;text-align:right}
+.dg small{display:block;color:var(--ink-3);font-size:12.5px}
+.tips{margin-top:12px;display:grid;gap:8px}
+.tips div{background:var(--bg-2);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--ink-2)}
+.tips b{color:var(--night)}
+.wcols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.wcols div{border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--ink-2)}
+.wcols h4{margin:0 0 6px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+.wcols .g h4{color:var(--ok)}.wcols .f h4{color:#B42335}
+.wcols li{margin-bottom:4px}.wcols ul{margin:0;padding-left:18px}
+.plan{display:grid;gap:10px;margin-top:8px}
+.plan div{display:grid;grid-template-columns:76px 1fr;gap:12px;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.plan em{font:700 15px/1.3 var(--serif);font-style:normal;color:var(--gold)}
+.plan b{display:block;color:var(--night)}.plan p{margin:4px 0;font-size:13.5px}
+.plan a{font-size:13px;font-weight:700;color:var(--gold);text-decoration:none}
+.wait{text-align:center;padding:26px;color:var(--ink-2)}
+.wait i{display:inline-block;width:22px;height:22px;border:3px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:560px){.conv{grid-template-columns:1fr 1fr 1fr}.conv b{font-size:19px}.wcols{grid-template-columns:1fr}.plan div{grid-template-columns:1fr;gap:4px}.field.two{grid-template-columns:1fr}}
+.full{background:var(--night);color:#fff;border-radius:20px;padding:22px;margin:16px 0;box-shadow:var(--sh-2)}
+.full .k{font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#E3C27A}
+.full h3{font-family:var(--serif);font-size:24px;margin:6px 0 6px;color:#fff}
+.full>p{margin:0 0 14px;color:#C9CFDB;font-size:14.5px}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fopt{display:flex;flex-direction:column;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(227,194,122,.45);border-radius:16px;padding:16px;text-decoration:none;color:#fff;transition:border-color .2s,transform .2s}
+.fopt:hover{border-color:#E3C27A;transform:translateY(-2px)}
+.fopt b{font-family:var(--serif);font-size:19px}
+.fopt small{color:#C9CFDB;font-size:13px;line-height:1.45}
+.fopt span{margin-top:auto;padding-top:6px;color:#E3C27A;font-weight:700;font-size:14px}
+@media (max-width:560px){.fgrid{grid-template-columns:1fr}}
 .lead-box{background:var(--bg-2);border:1px solid var(--line);border-radius:20px;padding:22px}
 .lead-box h3{font-family:var(--serif);font-size:22px;margin:0 0 4px}
 .lead-box>p{margin:0 0 16px;color:var(--ink-2);font-size:14.5px}
@@ -357,12 +410,15 @@ button,input{font:inherit;color:inherit}
   <div class="mcard">
     <button class="mx" type="button" id="mClose" aria-label="Đóng">×</button>
     <span class="k">Thông tin thi thử</span>
-    <h2 id="mTitle">Gửi kết quả cho ai?</h2>
-    <p class="msub">AZ dùng thông tin này để gửi kết quả và tư vấn lộ trình đúng trình độ của bạn.</p>
+    <h2 id="mTitle">Nhận báo cáo tư vấn cá nhân</h2>
+    <p class="msub">Làm xong, bạn nhận ngay báo cáo tư vấn: chẩn đoán từng dạng câu, khoảng cách tới mục tiêu, thời gian dự kiến và kế hoạch 4 tuần. Bản PDF 3 trang được gửi về email của bạn.</p>
     <div class="field"><label class="lbl" for="mName">Họ và tên</label><input class="inp" id="mName" maxlength="60" autocomplete="name" placeholder="Nguyễn Văn A"></div>
     <div class="field"><label class="lbl" for="mPhone">Số điện thoại / Zalo</label><input class="inp" id="mPhone" type="tel" inputmode="tel" maxlength="14" autocomplete="tel" placeholder="0912 345 678"></div>
+    <div class="field"><label class="lbl" for="mEmail">Email nhận kết quả</label><input class="inp" id="mEmail" type="email" inputmode="email" maxlength="80" autocomplete="email" placeholder="ten@gmail.com"></div>
     <div class="field"><span class="lbl">Muốn học</span><div class="seg" id="mMode"><button type="button" data-v="offline" aria-pressed="false">🏫 Offline</button><button type="button" data-v="online" aria-pressed="false">💻 Online</button></div></div>
-    <label class="check"><input type="checkbox" id="mOk"><span>Tôi đồng ý để AZEnglish gửi kết quả và gọi điện / nhắn Zalo tư vấn.</span></label>
+    <div class="field"><span class="lbl">Mục tiêu của bạn</span><div class="seg seg4" id="mGoal"><button type="button" data-v="ielts" aria-pressed="false">IELTS</button><button type="button" data-v="toeic" aria-pressed="false">TOEIC</button><button type="button" data-v="giaotiep" aria-pressed="false">Giao tiếp</button><button type="button" data-v="thcs" aria-pressed="false">Thi cấp 2–3</button></div></div>
+    <div class="field two" id="mGoalMore" hidden><div><label class="lbl" for="mTarget">Muốn đạt</label><select class="inp" id="mTarget"></select></div><div><label class="lbl" for="mWhen">Trong vòng</label><select class="inp" id="mWhen"><option value="">Chưa có hạn</option><option value="3">3 tháng</option><option value="6">6 tháng</option><option value="12">12 tháng</option><option value="24">24 tháng</option></select></div></div>
+    <label class="check"><input type="checkbox" id="mOk"><span>Tôi đồng ý để AZEnglish gửi kết quả qua email và gọi điện / nhắn Zalo tư vấn.</span></label>
     <div class="err" id="mErr" role="alert"></div>
     <button class="btn main block" id="mGo" type="button"><span>Vào phòng thi</span><svg><use href="#i-arrow"/></svg></button>
     <p class="fine"><svg><use href="#i-lock"/></svg>Không spam · Không chia sẻ cho bên thứ ba</p>
@@ -846,6 +902,31 @@ function azGiftCards(prog, cls){
   }
 
   // Gợi ý chương trình AZ theo CEFR (ước lượng — tư vấn viên xác nhận khi gọi)
+  // Dạng câu của từng câu hỏi (khớp KQ.tags ở máy chủ)
+  var TAGS = {rr: ["chi", "chi", "lydo", "chi", "chi", "lydo"], rl: ["thi", "lydo", "thi", "yd", "thi", "yd", "thi"],
+    down: {r: ["chi", "chi", "chi", "chi", "chi"], l: ["chi", "chi", "chi", "so", "chi"]},
+    mid: {r: ["chi", "tu", "suy", "y", "chi", "lydo"], l: ["so", "lydo", "lydo", "lydo", "chi"]},
+    up: {r: ["chi", "suy", "suy", "y", "chi", "chi"], l: ["tu", "suy", "yd", "yd", "yd"]}};
+  var GOALS = {ielts: [["4.0", "IELTS 4.0"], ["5.0", "IELTS 5.0"], ["5.5", "IELTS 5.5"], ["6.0", "IELTS 6.0"], ["6.5", "IELTS 6.5"], ["7.0", "IELTS 7.0"], ["7.5", "IELTS 7.5"], ["8.0", "IELTS 8.0+"]],
+    toeic: [["450", "TOEIC 450"], ["550", "TOEIC 550"], ["650", "TOEIC 650"], ["750", "TOEIC 750"], ["850", "TOEIC 850"], ["900", "TOEIC 900+"]],
+    giaotiep: [["A2", "Giao tiếp cơ bản hằng ngày"], ["B1", "Giao tiếp công việc, du lịch"], ["B2", "Lưu loát, thuyết trình"]],
+    thcs: [["l10", "Thi vào lớp 10 đạt 8+"], ["thpt", "Thi tốt nghiệp THPT 8+"], ["hsg", "Học sinh giỏi tiếng Anh"]]};
+  var CN = ["because", "but", "however", "although", "so", "which", "that", "when", "if", "after", "before", "since", "while", "also", "therefore"];
+  function tagStats(){
+    var tg = {}, add = function(k, ok){ tg[k] = tg[k] || [0, 0]; tg[k][1]++; if (ok) tg[k][0]++; };
+    ROUTING.reading.questions.forEach(function(q, i){ add("r." + TAGS.rr[i], S.ans["rr" + i] === q.correct); });
+    ROUTING.listening.clips.forEach(function(q, i){ add("l." + TAGS.rl[i], S.ans["rl" + i] === q.correct); });
+    if (S.rb) BRANCHES[S.rb].reading.questions.forEach(function(q, i){ add("r." + TAGS[S.rb].r[i], S.ans["br" + i] === q.correct); });
+    if (S.lb) BRANCHES[S.lb].listening.clips.forEach(function(q, i){ add("l." + TAGS[S.lb].l[i], S.ans["bl" + i] === q.correct); });
+    return tg;
+  }
+  function writeStats(t){
+    t = String(t || "").trim(); var low = t.toLowerCase(), words = t ? t.split(/\s+/).length : 0;
+    var used = CN.filter(function(c){ return new RegExp("\\b" + c + "\\b").test(low); });
+    var cx = (low.match(/\b(because|although|if|when|which|that|while|since)\b/g) || []).length;
+    return {w: words, s: t ? t.split(/[.!?]+/).filter(function(x){ return x.trim(); }).length : 0, x: cx, u: used};
+  }
+  var FULL = {ielts: "https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/academy.html#kiem-tra", toeic: "https://nguyentruongquangtung1994-beep.github.io/AZTOEIC-trainer/"};
   var RECO = {
     A1: {prog: "giaotiep", t: "Giao tiếp nền tảng", d: ["Xây phát âm, từ vựng và mẫu câu nền tảng", "Học sinh cấp 2–3: lớp Tiếng Anh THCS – THPT bám sát SGK", "Mục tiêu IELTS: bắt đầu từ Giai đoạn 1 (0 → 3.0)"]},
     A2: {prog: "giaotiep", t: "Giao tiếp sơ cấp / TOEIC nền tảng", d: ["Nói được tình huống quen thuộc, mở rộng vốn từ theo chủ đề", "Mục tiêu TOEIC: lộ trình nền tảng trước khi luyện đề", "Mục tiêu IELTS: Giai đoạn 1 – 2 (0 → 5.0)"]},
@@ -866,7 +947,8 @@ function azGiftCards(prog, cls){
     var pct = Math.round((r + l + w) / 3), cefr = cefrFromPct(pct);
     var res = {id: S.id, cefr: cefr, pct: pct, r: r, l: l, w: w, rb: S.rb || "", lb: S.lb || "", sec: TOTAL - Math.max(S.left, 0), auto: auto};
     store("azkt_last", res);
-    post(Object.assign({t: "test", phone: S.phone}, res)).catch(function(){});
+    var ws = writeStats(w1 + "\n" + w2);
+    S.mailP = post(Object.assign({t: "test", phone: S.phone, name: S.name, email: S.email, goal: S.goal, tg: tagStats(), ws: {w: ws.w, s: Math.max(1, ws.s), x: ws.x, u: ws.u}}, res)).catch(function(){ return null; });
     showResult(res);
   }
 
@@ -878,23 +960,58 @@ function azGiftCards(prog, cls){
       '<div class="res-top"><div class="badge-lv" style="--p:' + x.pct + '"><div><b>' + x.cefr + '</b><span>' + x.pct + '% tổng</span></div></div>' +
       '<div><span class="eyebrow" style="position:relative"><i></i>Kết quả' + (S.name ? " của " + esc(S.name) : "") + '</span><h2 style="margin-top:12px">' + esc(info.title || x.cefr) + '</h2><p>' + esc(info.cambridge || "") + '</p></div></div>' +
       '<div class="skills">' + sk("Đọc", "reading", x.r) + sk("Nghe", "listening", x.l) + sk("Viết", "writing", x.w) + '</div>' +
-      '<div class="reco"><span class="stage-h"><span class="k">Lộ trình gợi ý</span></span><h3>' + esc(rc.t) + '</h3><ul>' + rc.d.map(function(t){ return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>' +
-        '<p style="margin:12px 0 0;font-size:14px;color:var(--ink-2)">Kỹ năng cần ưu tiên: <b>' + weak + '</b> — ' + esc((EXERCISES[weak] || [])[0] || "") + '</p></div>' +
+      '<div id="rep"><div class="rp wait"><i></i>AZ đang phân tích bài làm và soạn báo cáo tư vấn cho bạn…</div></div>' +
+      '<div class="full"><span class="k">Bước tiếp theo</span><h3>Bạn có muốn làm Full Test?</h3>' +
+        '<p>Bài 20 phút cho biết trình độ chung (CEFR). Nếu bạn đang nhắm tới IELTS hoặc TOEIC, làm thêm Full Test đúng chuẩn kỳ thi để biết điểm sát thực tế.</p>' +
+        '<div class="fgrid"><a class="fopt" href="' + FULL.ielts + '" target="_blank" rel="noopener"><b>Full Test IELTS</b><small>Listening, Reading đề Cambridge 21, Writing tự chọn đề · có band từng kỹ năng</small><span>Làm Full Test IELTS →</span></a>' +
+        '<a class="fopt" href="' + FULL.toeic + '" target="_blank" rel="noopener"><b>Full Test TOEIC</b><small>Đề ETS 200 câu · 120 phút · quy đổi điểm /990, phân tích từng Part</small><span>Làm Full Test TOEIC →</span></a></div></div>' +
       '<div class="lead-box" id="leadBox"><h3>Đang gửi kết quả cho AZ…</h3><p>Chờ trong giây lát.</p></div>' +
       '<p class="note-sm">Kết quả là ước lượng từ bài kiểm tra online, giáo viên AZ sẽ xác nhận lại khi tư vấn. Mã bài: ' + esc(x.id) + '</p>';
     setTimeout(function(){ document.querySelectorAll(".sk .bar i").forEach(function(b){ b.style.width = b.dataset.w + "%"; }); }, 200);
     scrollTo({top: 0});
     sendLead(x, rc);
+    var fallback = function(){ $("rep").innerHTML = '<div class="reco"><span class="stage-h"><span class="k">Lộ trình gợi ý</span></span><h3>' + esc(rc.t) + '</h3><ul>' + rc.d.map(function(t){ return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>' +
+      '<p style="margin:12px 0 0;font-size:14px;color:var(--ink-2)">Kỹ năng cần ưu tiên: <b>' + weak + '</b> — ' + esc((EXERCISES[weak] || [])[0] || "") + '</p></div>'; };
+    var to = setTimeout(fallback, 20000);
+    (S.mailP || Promise.resolve(null)).then(function(m){ clearTimeout(to); if (m && m.rep) renderRep(m.rep); else fallback(); }).catch(function(){ clearTimeout(to); fallback(); });
+  }
+
+  // Báo cáo tư vấn (câu chữ do máy chủ soạn; trang chỉ trình bày)
+  function renderRep(R){
+    var col = function(p){ return p >= 70 ? "var(--ok)" : p >= 45 ? "var(--gold)" : "#B42335"; };
+    var h = '<div class="rp vd"><span class="k">Nhận định của AZ</span><h3>Bức tranh tổng quan</h3>' + R.verdict.map(function(t){ return '<p>' + esc(t) + '</p>'; }).join("") +
+      '<div class="conv"><div><small>CEFR</small><b>' + esc(R.cefr) + '</b></div><div><small>IELTS ≈</small><b>' + esc(R.conv.ielts) + '</b></div><div><small>TOEIC ≈</small><b>' + esc(R.conv.toeicRange) + '</b></div></div>' +
+      '<p class="nt" style="font-size:12.5px;color:var(--ink-3);margin:10px 0 0;padding:0">Quy đổi tham chiếu theo khung CEFR — làm Full Test để có điểm chính xác.</p></div>';
+    var g = R.gap;
+    if (g) h += '<div class="rp"><span class="k">Khoảng cách tới mục tiêu</span><h3>' + esc(g.done ? "Bạn đã chạm mục tiêu" : "Còn bao xa, mất bao lâu?") + '</h3>' +
+      '<div class="gapbar"><span>' + esc(g.now) + '</span><i></i><span class="to">' + esc(g.goal) + '</span></div>' +
+      (g.need ? '<p>Cần thêm <b>' + esc(g.need) + '</b> ≈ <b>' + g.months + ' tháng</b> (' + esc(g.perMonth) + '). ' + esc(g.how) + '</p>' : '') +
+      '<div class="vbox ' + (g.verdict === "far" ? "far" : g.verdict === "tight" ? "tight" : "") + '"><b>' + (g.verdict === "far" ? "CẦN ĐIỀU CHỈNH" : g.verdict === "tight" ? "SÁT NÚT" : "KHẢ THI") + '</b><p>' + esc(g.say) + '</p></div></div>';
+    var types = []; R.skills.slice(0, 2).forEach(function(sk){ sk.types.forEach(function(t){ types.push([sk.n, t]); }); });
+    if (types.length) h += '<div class="rp"><span class="k">Chẩn đoán</span><h3>Bạn mất điểm ở dạng câu nào?</h3><table class="dg">' +
+      types.map(function(z){ var t = z[1]; return '<tr><td>' + z[0] + '</td><td><b>' + esc(t.label) + '</b><small>' + esc(t.what) + '</small></td><td class="pc" style="color:' + col(t.p) + '">' + t.c + '/' + t.t + '</td></tr>'; }).join("") + '</table>' +
+      '<div class="tips">' + types.filter(function(z){ return z[1].p < 70; }).slice(0, 3).map(function(z){ return '<div><b>' + esc(z[1].label) + ':</b> ' + esc(z[1].fix) + '</div>'; }).join("") + '</div></div>';
+    var W = R.writing;
+    if (W) h += '<div class="rp"><span class="k">Phần Viết</span><h3>Nhận xét trên chính bài của bạn</h3><p style="font-size:13.5px;color:var(--ink-3)">' + W.words + ' từ · ' + W.sent + ' câu · ' + W.avg + ' từ/câu · từ nối: ' + esc(W.used.length ? W.used.join(", ") : "chưa có") + '</p>' +
+      '<div class="wcols"><div class="g"><h4>Điểm tốt</h4><ul>' + W.good.map(function(t){ return '<li>' + esc(t) + '</li>'; }).join("") + '</ul></div>' +
+      '<div class="f"><h4>Cần cải thiện</h4><ul>' + W.fix.map(function(t){ return '<li>' + esc(t) + '</li>'; }).join("") + '</ul></div></div>' +
+      '<p style="margin-top:10px"><b>Để lên bậc tiếp theo:</b> ' + esc(W.next) + '</p></div>';
+    h += '<div class="rp"><span class="k">Kế hoạch 4 tuần</span><h3>Riêng cho kết quả của bạn</h3><div class="plan">' +
+      R.plan.map(function(p){ return '<div><em>' + esc(p.w) + '</em><span><b>' + esc(p.t) + '</b><p>' + esc(p.d) + '</p><a href="' + esc(p.tool[1]) + '" target="_blank" rel="noopener">' + esc(p.tool[0]) + ' →</a></span></div>'; }).join("") + '</div>' +
+      '<p style="margin:14px 0 0">Lộ trình phù hợp tại AZEnglish: <b>' + esc(R.course) + '</b>.</p></div>';
+    $("rep").innerHTML = h;
   }
 
   // Tự gửi lead kèm kết quả (thông tin đã điền ở popup trước khi thi)
   function sendLead(x, rc){
     var sum = x.cefr + " · Đọc " + x.r + "% · Nghe " + x.l + "% · Viết " + x.w + "% (" + x.id + ")";
     var box = $("leadBox");
-    post({t: "reg", phone: S.phone, prog: rc.prog, role: "hv", name: S.name, mode: S.mode, src: "Test trình độ", test: sum, consent: true}).then(function(r){
+    post({t: "reg", phone: S.phone, prog: (S.goal && S.goal.k) || rc.prog, role: "hv", name: S.name, email: S.email, mode: S.mode, src: "Test trình độ", test: sum, consent: true}).then(function(r){
       if (!r || !r.ok) throw new Error((r && r.err) || "Gửi chưa được");
+      return (S.mailP || Promise.resolve(null)).then(function(m){ return m && m.mailed; });
+    }).then(function(mailed){
       box.innerHTML = '<span class="k" style="font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)">Đã gửi kết quả</span><h3>Cảm ơn bạn ' + esc(S.name) + '</h3>' +
-        '<p>AZEnglish đã nhận kết quả <b>' + x.cefr + '</b>. Tư vấn viên sẽ liên hệ số ' + esc(S.phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3")) + ' trong vòng 2 giờ làm việc để giải thích kết quả và xếp lộ trình ' + (S.mode === "online" ? "học Online" : "tại trung tâm") + '.</p>' +
+        '<p>' + (mailed ? 'Báo cáo tư vấn bản PDF đã được gửi về email <b>' + esc(S.email) + '</b> (xem cả mục Quảng cáo/Spam nếu chưa thấy). ' : 'AZEnglish đã nhận kết quả <b>' + x.cefr + '</b>. ') + 'Tư vấn viên sẽ liên hệ số ' + esc(S.phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3")) + ' trong vòng 2 giờ làm việc để giải thích kết quả và xếp lộ trình ' + (S.mode === "online" ? "học Online" : "tại trung tâm") + '.</p>' +
         '<p class="nt" style="font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:16px 0 8px">Quà tặng từ AZEnglish</p><div class="gifts">' + azGiftCards(rc.prog) + '</div>' +
         '<a class="btn dark block" style="margin-top:14px" href="https://zalo.me/0971882096" target="_blank" rel="noopener">Liên hệ AZEnglish qua Zalo</a>';
     }).catch(function(e){
@@ -908,6 +1025,7 @@ function azGiftCards(prog, cls){
   var mMode = "", me = store("azkt_me") || {};
   if (me.name) $("mName").value = me.name;
   if (me.phone) $("mPhone").value = me.phone;
+  if (me.email) $("mEmail").value = me.email;
   function openModal(){ $("modal").hidden = false; setTimeout(function(){ ($("mName").value ? $("mPhone") : $("mName")).focus(); }, 60); }
   function closeModal(){ $("modal").hidden = true; }
   $("startBtn").addEventListener("click", openModal);
@@ -915,12 +1033,17 @@ function azGiftCards(prog, cls){
   $("modal").addEventListener("click", function(e){ if (e.target.id === "modal") closeModal(); });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !$("modal").hidden) closeModal(); });
   $("mMode").addEventListener("click", function(e){ var b = e.target.closest("button"); if (!b) return; mMode = b.dataset.v; $("mMode").querySelectorAll("button").forEach(function(y){ y.setAttribute("aria-pressed", y === b ? "true" : "false"); }); });
+  var mGoal = "";
+  $("mGoal").addEventListener("click", function(e){ var b = e.target.closest("button"); if (!b) return; mGoal = b.dataset.v;
+    $("mGoal").querySelectorAll("button").forEach(function(y){ y.setAttribute("aria-pressed", y === b ? "true" : "false"); });
+    $("mTarget").innerHTML = '<option value="">Chọn…</option>' + GOALS[mGoal].map(function(o){ return '<option value="' + o[0] + '">' + esc(o[1]) + '</option>'; }).join("");
+    $("mGoalMore").hidden = false; });
   $("mGo").addEventListener("click", function(){
-    var nm = $("mName").value.trim(), ph = normPhone($("mPhone").value);
-    var er = nm.length < 2 ? "Bạn ghi họ và tên nhé." : !ph ? "Số điện thoại chưa đúng (10 số, bắt đầu bằng 0)." : !mMode ? "Bạn chọn học Online hay Offline nhé." : !$("mOk").checked ? "Bạn tích ô đồng ý để nhận kết quả nhé." : "";
+    var nm = $("mName").value.trim(), ph = normPhone($("mPhone").value), em = $("mEmail").value.trim().toLowerCase();
+    var er = nm.length < 2 ? "Bạn ghi họ và tên nhé." : !ph ? "Số điện thoại chưa đúng (10 số, bắt đầu bằng 0)." : !/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(em) ? "Email chưa đúng — kết quả sẽ gửi về địa chỉ này." : !mMode ? "Bạn chọn học Online hay Offline nhé." : !mGoal || !$("mTarget").value ? "Bạn chọn mục tiêu muốn đạt nhé — AZ dùng để tính lộ trình cho bạn." : !$("mOk").checked ? "Bạn tích ô đồng ý để nhận kết quả nhé." : "";
     $("mErr").textContent = er; if (er) return;
-    S.name = nm.slice(0, 60); S.phone = ph; S.mode = mMode;
-    store("azkt_me", {name: S.name, phone: ph});
+    S.name = nm.slice(0, 60); S.phone = ph; S.email = em; S.mode = mMode; S.goal = {k: mGoal, t: $("mTarget").value, h: $("mWhen").value};
+    store("azkt_me", {name: S.name, phone: ph, email: em});
     closeModal();
     S.id = "T" + Date.now().toString(36).toUpperCase();
     $("intro").hidden = true; $("runner").hidden = false;
