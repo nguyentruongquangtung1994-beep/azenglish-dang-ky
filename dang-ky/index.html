@@ -706,6 +706,10 @@ var AZ_TOOLS = {
   test:     {e: "test", t: "Bài test trình độ online", d: "Kết quả CEFR và lộ trình gợi ý ngay", u: "../kiem-tra/"},
   roadmap:  {e: "map", t: "Lộ trình tự học 4 tuần", d: "Mỗi ngày 20–30 phút, theo đúng khóa bạn chọn", u: "../tu-hoc/"}
 };
+// Hồ sơ dùng chung trên máy khách (cùng tên miền github.io): điền 1 lần, các trang sau tự nhớ — không gửi đi đâu
+function azMe(){ try { var m = JSON.parse(localStorage.getItem("az_me") || "null") || {}, o = JSON.parse(localStorage.getItem("azkt_me") || "null") || {};
+  for (var k in o) if (m[k] == null || m[k] === "") m[k] = o[k]; return m; } catch (e) { return {}; } }
+function azMeSet(o){ try { var m = azMe(); for (var k in o) if (o[k] != null && o[k] !== "") m[k] = o[k]; localStorage.setItem("az_me", JSON.stringify(m)); } catch (e) {} }
 // Bộ quà theo chương trình (thứ tự = mức ưu tiên hiển thị)
 var AZ_GIFTS = { // mỗi khóa đúng 5 món (khung "5 phần quà" trên form)
   ielts:    ["academy", "ieltsVoc", "vocab", "grammar", "roadmap"],
@@ -744,14 +748,8 @@ function azGiftCards(prog, cls){
 (function(){
   var API = "https://script.google.com/macros/s/AKfycbzVkTRdKunimvq9joNKd-s6fkC13rlS4rAPNPWP8RNVmkGls9sEumyEgjinq1NADB88Cg/exec";
   var OFF = "Form đang được nối máy chủ — bạn nhắn Zalo 0971 882 096 để AZ hỗ trợ ngay nhé.";
-  var TEST = {
-    ielts: {url: "https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/academy.html#kiem-tra", txt: "Kiểm tra IELTS đầu vào"},
-    toeic: {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"},
-    giaotiep: {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"},
-    thcs: {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"},
-    tuvan: {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"}
-  };
-  TEST.junior = {url: "../kiem-tra/", txt: "Làm bài test trình độ 20 phút"};
+  var TEST = {}; // mọi chương trình: test 20 phút + báo cáo tư vấn (thông tin đã điền tự chuyển sang, không phải nhập lại)
+  ["ielts", "toeic", "giaotiep", "thcs", "tuvan", "junior"].forEach(function(k){ TEST[k] = {url: "../kiem-tra/?go=1", txt: "Làm test 20 phút · nhận báo cáo tư vấn"}; });
   var GIFT = {ielts: "giảm 200.000đ", toeic: "giảm 200.000đ", giaotiep: "giảm 200.000đ", thcs: "giảm 200.000đ"}; // AZJunior không áp dụng giới thiệu
   var RES = [
     {img: "assets/ket-qua-leyonardo-8.0.webp", name: "Leyonardo", ov: "8.0", when: "Academic · 08/2026"},
@@ -793,6 +791,14 @@ function azGiftCards(prog, cls){
   pick($("progs"), "prog", true); pick($("role"), "role", true); pick($("mode"), "mode", true); pick($("time"), "time", false);
   function choose(p){ var b = document.querySelector('#progs [data-p="' + p + '"]'); if (b && S.prog !== p) b.click(); }
   var p0 = (Q.get("p") || "").toLowerCase(); if (p0) choose(p0);
+  // Đã điền ở trang khác (test trình độ, lần đăng ký trước) → điền sẵn, khách chỉ kiểm tra rồi bấm gửi
+  var ME = azMe(), GK = {ielts: "ielts", toeic: "toeic", giaotiep: "giaotiep", thcs: "thcs"};
+  if (!p0 && (ME.prog || (ME.goal && GK[ME.goal.k]))) choose(ME.prog || GK[ME.goal.k]);
+  if (ME.phone) { $("phone").value = ME.phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3"); $("phoneBox").classList.add("valid"); }
+  if (ME.name) $("name").value = ME.name;
+  var pre = function(box, v){ var b = v && box.querySelector('[data-v="' + v + '"]'); if (b) b.click(); };
+  pre($("role"), ME.role); pre($("mode"), ME.mode);
+  if (ME.consent) { $("consent").checked = true; $("consent").dispatchEvent(new Event("change", {bubbles: true})); } // đã đồng ý ở bài test / lần đăng ký trước (vẫn bỏ chọn được)
   document.querySelectorAll("[data-pick]").forEach(function(b){
     b.addEventListener("click", function(){ choose(b.dataset.pick); $("form").scrollIntoView({behavior: "smooth", block: "start"}); setTimeout(function(){ $("phone").focus({preventScroll: true}); }, 600); });
   });
@@ -807,7 +813,7 @@ function azGiftCards(prog, cls){
 
   // Kết quả test trình độ (trang ../kiem-tra/ lưu tạm trên máy) → gửi kèm đăng ký
   function testSummary(){ var t = store("azkt_last"); return t && t.cefr ? t.cefr + " · Đọc " + t.r + "% · Nghe " + t.l + "% · Viết " + t.w + "% (" + t.id + ")" : ""; }
-  (function(){ var t = store("azkt_last"); if (t && t.cefr && Q.get("from") === "test") { $("refBox").hidden = false; $("refTxt").innerHTML = "Kết quả test của bạn: <b>" + t.cefr + "</b> — AZ sẽ tư vấn lộ trình đúng trình độ này."; } })();
+  (function(){ var t = store("azkt_last"); if (t && t.cefr && !ref) { $("refBox").hidden = false; $("refTxt").innerHTML = "Kết quả test của bạn: <b>" + t.cefr + "</b> — AZ sẽ tư vấn lộ trình đúng trình độ này."; } })();
 
   var PNAME = {ielts: "IELTS", toeic: "TOEIC", giaotiep: "Tiếng Anh giao tiếp", junior: "AZJunior Public Speaking & Debate", thcs: "Tiếng Anh THCS – THPT", tuvan: "Cần AZ tư vấn"};
   function giftList(){
@@ -884,7 +890,8 @@ function azGiftCards(prog, cls){
     $("okGift").hidden = !r.uudai;
     if (r.uudai) $("okGiftTxt").innerHTML = "Ưu đãi giới thiệu: <b>" + esc(r.uudai) + "</b> — áp dụng khi đóng học phí.";
     $("okGifts").innerHTML = azGiftCards(S.prog || "tuvan");
-    var t = TEST[S.prog];
+    azMeSet({name: nm, phone: ph, role: S.role, mode: S.mode, prog: S.prog, consent: 1});
+    var t = store("azkt_last") && store("azkt_last").cefr ? null : TEST[S.prog]; // đã làm test rồi thì không mời làm lại
     $("testBtn").hidden = !t;
     if (t) { $("testBtn").href = t.url; $("testBtn").querySelector("span").textContent = t.txt; }
     $("form").scrollIntoView({behavior: "smooth", block: "start"});

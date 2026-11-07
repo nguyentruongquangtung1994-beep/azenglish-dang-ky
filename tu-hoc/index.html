@@ -277,6 +277,10 @@ var AZ_TOOLS = {
   test:     {e: "test", t: "Bài test trình độ online", d: "Kết quả CEFR và lộ trình gợi ý ngay", u: "../kiem-tra/"},
   roadmap:  {e: "map", t: "Lộ trình tự học 4 tuần", d: "Mỗi ngày 20–30 phút, theo đúng khóa bạn chọn", u: "../tu-hoc/"}
 };
+// Hồ sơ dùng chung trên máy khách (cùng tên miền github.io): điền 1 lần, các trang sau tự nhớ — không gửi đi đâu
+function azMe(){ try { var m = JSON.parse(localStorage.getItem("az_me") || "null") || {}, o = JSON.parse(localStorage.getItem("azkt_me") || "null") || {};
+  for (var k in o) if (m[k] == null || m[k] === "") m[k] = o[k]; return m; } catch (e) { return {}; } }
+function azMeSet(o){ try { var m = azMe(); for (var k in o) if (o[k] != null && o[k] !== "") m[k] = o[k]; localStorage.setItem("az_me", JSON.stringify(m)); } catch (e) {} }
 // Bộ quà theo chương trình (thứ tự = mức ưu tiên hiển thị)
 var AZ_GIFTS = { // mỗi khóa đúng 5 món (khung "5 phần quà" trên form)
   ielts:    ["academy", "ieltsVoc", "vocab", "grammar", "roadmap"],

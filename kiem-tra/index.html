@@ -287,6 +287,11 @@ button,input{font:inherit;color:inherit}
 .reco h3{font-family:var(--serif);font-size:24px;margin:0 0 6px}
 .reco ul{margin:10px 0 0;padding-left:20px;color:var(--ink-2)}
 .reco li{margin-bottom:4px}
+.who{display:flex;align-items:center;gap:12px;background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 14px}
+.who .av{width:40px;height:40px;border-radius:50%;background:var(--night);color:#E3C27A;display:grid;place-items:center;font:700 16px/1 var(--serif);flex:none}
+.who b{display:block;font-size:15px}.who small{color:var(--ink-3);font-size:13px}
+.who span:nth-child(2){flex:1;min-width:0}
+.who button{border:1px solid var(--line-2);background:#fff;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;color:var(--ink-2);cursor:pointer}
 .seg4{grid-template-columns:repeat(4,1fr)}.seg4 button{font-size:13.5px;padding:0 4px}
 .field.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 select.inp{appearance:none;-webkit-appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8913A' stroke-width='2' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center;padding-right:34px;font-size:15px}
@@ -412,13 +417,15 @@ select.inp{appearance:none;-webkit-appearance:none;background:#fff url("data:ima
     <span class="k">Thông tin thi thử</span>
     <h2 id="mTitle">Nhận báo cáo tư vấn cá nhân</h2>
     <p class="msub">Làm xong, bạn nhận ngay báo cáo tư vấn: chẩn đoán từng dạng câu, khoảng cách tới mục tiêu, thời gian dự kiến và kế hoạch 4 tuần. Bản PDF 3 trang được gửi về email của bạn.</p>
+    <div class="who" id="mWho" hidden><span class="av" id="mAv"></span><span><b id="mWhoN"></b><small id="mWhoP"></small></span><button type="button" id="mEdit">Đổi</button></div>
+    <div id="mIdent">
     <div class="field"><label class="lbl" for="mName">Họ và tên</label><input class="inp" id="mName" maxlength="60" autocomplete="name" placeholder="Nguyễn Văn A"></div>
     <div class="field"><label class="lbl" for="mPhone">Số điện thoại / Zalo</label><input class="inp" id="mPhone" type="tel" inputmode="tel" maxlength="14" autocomplete="tel" placeholder="0912 345 678"></div>
+    </div>
     <div class="field"><label class="lbl" for="mEmail">Email nhận kết quả</label><input class="inp" id="mEmail" type="email" inputmode="email" maxlength="80" autocomplete="email" placeholder="ten@gmail.com"></div>
-    <div class="field"><span class="lbl">Muốn học</span><div class="seg" id="mMode"><button type="button" data-v="offline" aria-pressed="false">🏫 Offline</button><button type="button" data-v="online" aria-pressed="false">💻 Online</button></div></div>
     <div class="field"><span class="lbl">Mục tiêu của bạn</span><div class="seg seg4" id="mGoal"><button type="button" data-v="ielts" aria-pressed="false">IELTS</button><button type="button" data-v="toeic" aria-pressed="false">TOEIC</button><button type="button" data-v="giaotiep" aria-pressed="false">Giao tiếp</button><button type="button" data-v="thcs" aria-pressed="false">Thi cấp 2–3</button></div></div>
     <div class="field two" id="mGoalMore" hidden><div><label class="lbl" for="mTarget">Muốn đạt</label><select class="inp" id="mTarget"></select></div><div><label class="lbl" for="mWhen">Trong vòng</label><select class="inp" id="mWhen"><option value="">Chưa có hạn</option><option value="3">3 tháng</option><option value="6">6 tháng</option><option value="12">12 tháng</option><option value="24">24 tháng</option></select></div></div>
-    <label class="check"><input type="checkbox" id="mOk"><span>Tôi đồng ý để AZEnglish gửi kết quả qua email và gọi điện / nhắn Zalo tư vấn.</span></label>
+    <label class="check" id="mOkBox"><input type="checkbox" id="mOk"><span>Tôi đồng ý để AZEnglish gửi kết quả qua email và gọi điện / nhắn Zalo tư vấn.</span></label>
     <div class="err" id="mErr" role="alert"></div>
     <button class="btn main block" id="mGo" type="button"><span>Vào phòng thi</span><svg><use href="#i-arrow"/></svg></button>
     <p class="fine"><svg><use href="#i-lock"/></svg>Không spam · Không chia sẻ cho bên thứ ba</p>
@@ -710,6 +717,10 @@ var AZ_TOOLS = {
   test:     {e: "test", t: "Bài test trình độ online", d: "Kết quả CEFR và lộ trình gợi ý ngay", u: "../kiem-tra/"},
   roadmap:  {e: "map", t: "Lộ trình tự học 4 tuần", d: "Mỗi ngày 20–30 phút, theo đúng khóa bạn chọn", u: "../tu-hoc/"}
 };
+// Hồ sơ dùng chung trên máy khách (cùng tên miền github.io): điền 1 lần, các trang sau tự nhớ — không gửi đi đâu
+function azMe(){ try { var m = JSON.parse(localStorage.getItem("az_me") || "null") || {}, o = JSON.parse(localStorage.getItem("azkt_me") || "null") || {};
+  for (var k in o) if (m[k] == null || m[k] === "") m[k] = o[k]; return m; } catch (e) { return {}; } }
+function azMeSet(o){ try { var m = azMe(); for (var k in o) if (o[k] != null && o[k] !== "") m[k] = o[k]; localStorage.setItem("az_me", JSON.stringify(m)); } catch (e) {} }
 // Bộ quà theo chương trình (thứ tự = mức ưu tiên hiển thị)
 var AZ_GIFTS = { // mỗi khóa đúng 5 món (khung "5 phần quà" trên form)
   ielts:    ["academy", "ieltsVoc", "vocab", "grammar", "roadmap"],
@@ -1006,12 +1017,12 @@ function azGiftCards(prog, cls){
   function sendLead(x, rc){
     var sum = x.cefr + " · Đọc " + x.r + "% · Nghe " + x.l + "% · Viết " + x.w + "% (" + x.id + ")";
     var box = $("leadBox");
-    post({t: "reg", phone: S.phone, prog: (S.goal && S.goal.k) || rc.prog, role: "hv", name: S.name, email: S.email, mode: S.mode, src: "Test trình độ", test: sum, consent: true}).then(function(r){
+    post({t: "reg", phone: S.phone, prog: (S.goal && S.goal.k) || rc.prog, role: me.role || "hv", name: S.name, email: S.email, mode: S.mode, src: "Test trình độ", test: sum, consent: true}).then(function(r){
       if (!r || !r.ok) throw new Error((r && r.err) || "Gửi chưa được");
       return (S.mailP || Promise.resolve(null)).then(function(m){ return m && m.mailed; });
     }).then(function(mailed){
       box.innerHTML = '<span class="k" style="font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)">Đã gửi kết quả</span><h3>Cảm ơn bạn ' + esc(S.name) + '</h3>' +
-        '<p>' + (mailed ? 'Báo cáo tư vấn bản PDF đã được gửi về email <b>' + esc(S.email) + '</b> (xem cả mục Quảng cáo/Spam nếu chưa thấy). ' : 'AZEnglish đã nhận kết quả <b>' + x.cefr + '</b>. ') + 'Tư vấn viên sẽ liên hệ số ' + esc(S.phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3")) + ' trong vòng 2 giờ làm việc để giải thích kết quả và xếp lộ trình ' + (S.mode === "online" ? "học Online" : "tại trung tâm") + '.</p>' +
+        '<p>' + (mailed ? 'Báo cáo tư vấn bản PDF đã được gửi về email <b>' + esc(S.email) + '</b> (xem cả mục Quảng cáo/Spam nếu chưa thấy). ' : 'AZEnglish đã nhận kết quả <b>' + x.cefr + '</b>. ') + 'Tư vấn viên sẽ liên hệ số ' + esc(S.phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3")) + ' trong vòng 2 giờ làm việc để giải thích kết quả và xếp lộ trình ' + (S.mode === "online" ? "học Online" : S.mode === "offline" ? "tại trung tâm" : "phù hợp") + '.</p>' +
         '<p class="nt" style="font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:16px 0 8px">Quà tặng từ AZEnglish</p><div class="gifts">' + azGiftCards(rc.prog) + '</div>' +
         '<a class="btn dark block" style="margin-top:14px" href="https://zalo.me/0971882096" target="_blank" rel="noopener">Liên hệ AZEnglish qua Zalo</a>';
     }).catch(function(e){
@@ -1021,29 +1032,48 @@ function azGiftCards(prog, cls){
     });
   }
 
-  // ---- Bắt đầu ----
-  var mMode = "", me = store("azkt_me") || {};
+  // ---- Bắt đầu ---- (hồ sơ dùng chung az_me: khách đã điền ở trang Đăng ký thì không phải nhập lại)
+  var me = azMe(), known = false, GK = {ielts: "ielts", toeic: "toeic", giaotiep: "giaotiep", thcs: "thcs", junior: "thcs"};
   if (me.name) $("mName").value = me.name;
   if (me.phone) $("mPhone").value = me.phone;
   if (me.email) $("mEmail").value = me.email;
-  function openModal(){ $("modal").hidden = false; setTimeout(function(){ ($("mName").value ? $("mPhone") : $("mName")).focus(); }, 60); }
+  function setKnown(on){
+    known = on; $("mIdent").hidden = on; $("mWho").hidden = !on;
+    if (on) { $("mAv").textContent = (me.name || "?").trim().split(" ").pop().charAt(0).toUpperCase(); $("mWhoN").textContent = me.name; $("mWhoP").textContent = String(me.phone).replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3"); }
+    var em = /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test($("mEmail").value);
+    $("mEmail").closest(".field").hidden = on && em;
+    if (on && em) $("mWhoP").textContent += " · " + $("mEmail").value;
+    $("mOkBox").hidden = on && !!me.consent; if (on && me.consent) $("mOk").checked = true;
+    $("mTitle").textContent = on ? "Chào " + me.name.trim().split(" ").pop() + ", chỉ còn 1 bước" : "Nhận báo cáo tư vấn cá nhân";
+  }
+  $("mEdit").addEventListener("click", function(){ setKnown(false); $("mName").focus(); });
+  function openModal(){
+    setKnown(!!(me.name && normPhone(me.phone)));
+    $("modal").hidden = false;
+    setTimeout(function(){ var f = [$("mName"), $("mPhone"), $("mEmail")].filter(function(x){ return !x.closest("[hidden]") && !x.value; })[0]; if (f) f.focus(); }, 60);
+  }
   function closeModal(){ $("modal").hidden = true; }
   $("startBtn").addEventListener("click", openModal);
   $("mClose").addEventListener("click", closeModal);
   $("modal").addEventListener("click", function(e){ if (e.target.id === "modal") closeModal(); });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !$("modal").hidden) closeModal(); });
-  $("mMode").addEventListener("click", function(e){ var b = e.target.closest("button"); if (!b) return; mMode = b.dataset.v; $("mMode").querySelectorAll("button").forEach(function(y){ y.setAttribute("aria-pressed", y === b ? "true" : "false"); }); });
   var mGoal = "";
-  $("mGoal").addEventListener("click", function(e){ var b = e.target.closest("button"); if (!b) return; mGoal = b.dataset.v;
+  function chooseGoal(k, t, h){
+    var b = $("mGoal").querySelector('[data-v="' + k + '"]'); if (!b) return; mGoal = k;
     $("mGoal").querySelectorAll("button").forEach(function(y){ y.setAttribute("aria-pressed", y === b ? "true" : "false"); });
     $("mTarget").innerHTML = '<option value="">Chọn…</option>' + GOALS[mGoal].map(function(o){ return '<option value="' + o[0] + '">' + esc(o[1]) + '</option>'; }).join("");
-    $("mGoalMore").hidden = false; });
+    $("mGoalMore").hidden = false; if (t) $("mTarget").value = t; if (h) $("mWhen").value = h;
+  }
+  $("mGoal").addEventListener("click", function(e){ var b = e.target.closest("button"); if (b) chooseGoal(b.dataset.v); });
+  if (me.goal && me.goal.k) chooseGoal(me.goal.k, me.goal.t, me.goal.h); else if (GK[me.prog]) chooseGoal(GK[me.prog]);
+  if (/[?&]go=1/.test(location.search)) setTimeout(openModal, 300);
   $("mGo").addEventListener("click", function(){
     var nm = $("mName").value.trim(), ph = normPhone($("mPhone").value), em = $("mEmail").value.trim().toLowerCase();
-    var er = nm.length < 2 ? "Bạn ghi họ và tên nhé." : !ph ? "Số điện thoại chưa đúng (10 số, bắt đầu bằng 0)." : !/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(em) ? "Email chưa đúng — kết quả sẽ gửi về địa chỉ này." : !mMode ? "Bạn chọn học Online hay Offline nhé." : !mGoal || !$("mTarget").value ? "Bạn chọn mục tiêu muốn đạt nhé — AZ dùng để tính lộ trình cho bạn." : !$("mOk").checked ? "Bạn tích ô đồng ý để nhận kết quả nhé." : "";
+    var er = nm.length < 2 ? "Bạn ghi họ và tên nhé." : !ph ? "Số điện thoại chưa đúng (10 số, bắt đầu bằng 0)." : !/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(em) ? "Email chưa đúng — kết quả sẽ gửi về địa chỉ này." : !mGoal || !$("mTarget").value ? "Bạn chọn mục tiêu muốn đạt nhé — AZ dùng để tính lộ trình cho bạn." : !$("mOk").checked ? "Bạn tích ô đồng ý để nhận kết quả nhé." : "";
     $("mErr").textContent = er; if (er) return;
-    S.name = nm.slice(0, 60); S.phone = ph; S.email = em; S.mode = mMode; S.goal = {k: mGoal, t: $("mTarget").value, h: $("mWhen").value};
-    store("azkt_me", {name: S.name, phone: ph, email: em});
+    S.name = nm.slice(0, 60); S.phone = ph; S.email = em; S.mode = me.mode || ""; S.goal = {k: mGoal, t: $("mTarget").value, h: $("mWhen").value};
+    if (known && (nm !== me.name || ph !== normPhone(me.phone))) known = false;
+    azMeSet({name: S.name, phone: ph, email: em, goal: S.goal, consent: 1}); me = azMe();
     closeModal();
     S.id = "T" + Date.now().toString(36).toUpperCase();
     $("intro").hidden = true; $("runner").hidden = false;

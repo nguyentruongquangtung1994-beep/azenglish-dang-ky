@@ -559,6 +559,7 @@ button,input{font:inherit;color:inherit}
 
   // Ghi nhớ trên máy này
   var me = store(ME) || {};
+  if (!me.name && !me.phone) { var az = store("az_me") || {}; if (az.name) me.name = az.name; if (az.phone) me.phone = az.phone; } // điền sẵn từ trang Đăng ký / Test (cùng tên miền)
   function fill(){
     ["rname", "cname"].forEach(function(id){ if (me.name && !$(id).value) $(id).value = me.name; });
     ["rphone", "cphone", "mphone"].forEach(function(id){ if (me.phone && !$(id).value) $(id).value = me.phone; });
